@@ -1,0 +1,97 @@
+﻿using KiefProductions_Site.Models;
+using MailKit.Net.Smtp;
+using MailKit.Security;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
+using MimeKit;
+using System.Diagnostics;
+using System.Net;
+using System.Net.Mail;
+
+namespace KiefProductions_Site.Controllers
+{
+    public class HomeController : Controller
+    {
+
+        // Holds SMTP settings injected from appsettings.json
+        private readonly SmtpSettings _smtpSettings;
+        private readonly ILogger<HomeController> _logger;
+
+        public HomeController(ILogger<HomeController> logger, IOptions<SmtpSettings> smtpOptions) 
+        {
+            _logger = logger;
+            _smtpSettings = smtpOptions.Value;
+        }
+
+        public IActionResult Index()
+        {
+            ViewData["HideNavbar"] = true;
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Index(ContactForm model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            try
+            {
+                using var message = new MailMessage();
+                using var client = new System.Net.Mail.SmtpClient("smtp.gmail.com", 587);
+
+                client.EnableSsl = true;
+                client.UseDefaultCredentials = false; // THIS IS IMPORTANT
+                // Your GMAIL credentials for sending
+                client.Credentials = new NetworkCredential("info.kiefklank@gmail.com", "zbbwowycrnyecjoj");
+
+                client.DeliveryMethod = SmtpDeliveryMethod.Network;
+                client.Timeout = 10000;
+
+                // THIS IS THE KEY - Set From as your .co.za address
+                message.From = new MailAddress("info@kiefproductions.co.za", "Kief Website");
+
+                // Reply-to set to the person filling the form
+                message.ReplyToList.Add(new MailAddress(model.Email, model.Name));
+
+                // Send to yourself
+                message.To.Add(new MailAddress("info@kiefproductions.co.za", "Kief Productions"));
+
+                message.Subject = "Contact Form: " + model.Name;
+                message.Body = $"Name: {model.Name}\n" +
+                              $"Email: {model.Email}\n" +
+                              $"Phone: {model.PhoneNumber}\n" +
+                              $"Date: {model.Date.ToShortDateString()}\n\n" +
+                              $"Message:\n{model.Details}";
+
+                // Add the submitter's info in the body too
+                message.Body += $"\n\n---\nSubmitted by: {model.Name} <{model.Email}>";
+
+                client.Send(message);
+
+                ViewBag.StatusMessage = "✓ Message sent successfully!";
+            }
+            catch (Exception ex)
+            {
+                ViewBag.StatusMessage = "Error: " + ex.Message;
+            }
+
+            ViewData["HideNavbar"] = true;
+            return View();
+        }
+
+        public IActionResult Privacy()
+        {
+            return View();
+        }
+
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        public IActionResult Error()
+        {
+            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+    }
+}
