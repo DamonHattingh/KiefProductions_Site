@@ -306,14 +306,15 @@
             }
 
                 .left-part h1 .text {
-                    display: inline-block;
-                    height: auto;
-                    min-height: calc(1em + 16px);
-                    line-height: 1;
+                    display: block;
+                    width: fit-content;
+                    height: 196px;
+                    line-height: 180px;
                     background: #ffffff;
                     color: #000000;
-                    padding: 8px 16px;
+                    padding: 0 16px;
                     border-radius: 6px;
+                    overflow: hidden;
                 }
 
                 .left-part h1 .d-flex {
@@ -3278,12 +3279,12 @@
             }
 
             new Typed(".text", {
-                strings: ["", "audio", "lighting", "visuals", "LED screens", "livestreams", "photography", "videography", "FX", "it all"],
+                strings: ["audio", "lighting", "visuals", "LED screens", "livestreams", "photography", "videography", "FX", "it all"],
                 typeSpeed: 100,
                 backSpeed: 40,
                 loop: true,
                 preStringTyped: function(arrayPos) {
-                    setServiceImage(arrayPos);
+                    setServiceImage(arrayPos + 1);
                 }
             });
 
