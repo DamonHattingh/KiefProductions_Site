@@ -1612,7 +1612,7 @@
             margin-bottom: 15px;
         }
 
-        /* CAROUSEL */
+        /* PORTFOLIO MASONRY */
         .carousel-section {
             padding: 80px 40px;
             position: relative;
@@ -1620,6 +1620,191 @@
             background-color: #121212;
             background-image: linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
             background-size: 40px 40px;
+        }
+
+        .masonry-grid {
+            columns: 3;
+            column-gap: 14px;
+            max-width: 1200px;
+            margin: 48px auto 0;
+        }
+
+        .masonry-item {
+            break-inside: avoid;
+            margin-bottom: 14px;
+            position: relative;
+            cursor: pointer;
+            overflow: hidden;
+            border-radius: 10px;
+            display: block;
+        }
+
+        .masonry-item img {
+            width: 100%;
+            display: block;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .masonry-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .masonry-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.2) 50%, transparent 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 20px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .masonry-item:hover .masonry-overlay {
+            opacity: 1;
+        }
+
+        .masonry-overlay h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            color: #fff;
+            margin: 6px 0 4px;
+        }
+
+        .masonry-overlay p {
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.7);
+            margin: 0;
+        }
+
+        .masonry-tag {
+            display: inline-block;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            padding: 3px 10px;
+            border-radius: 20px;
+            width: fit-content;
+        }
+
+        @@media (max-width: 900px) {
+            .masonry-grid { columns: 2; }
+        }
+
+        @@media (max-width: 560px) {
+            .masonry-grid { columns: 1; }
+        }
+
+        /* LIGHTBOX */
+        .lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 99000;
+            background: rgba(0,0,0,0.92);
+            backdrop-filter: blur(8px);
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lightbox.open {
+            display: flex;
+        }
+
+        .lb-inner {
+            position: relative;
+            max-width: 900px;
+            width: 90%;
+            background: #1a1a1a;
+            border-radius: 14px;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.1);
+            animation: fadeIn 0.3s ease;
+        }
+
+        .lb-img-wrap {
+            width: 100%;
+            max-height: 60vh;
+            overflow: hidden;
+        }
+
+        .lb-img-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .lb-info {
+            padding: 24px 28px;
+        }
+
+        .lb-info h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #fff;
+            margin: 8px 0 10px;
+        }
+
+        .lb-info p {
+            color: #b0b0b0;
+            font-size: 0.9rem;
+            line-height: 1.7;
+            margin: 0;
+        }
+
+        .lb-close {
+            position: absolute;
+            top: 14px;
+            right: 14px;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: rgba(0,0,0,0.6);
+            border: 1px solid rgba(255,255,255,0.2);
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            transition: background 0.2s;
+        }
+
+        .lb-close:hover { background: rgba(255,62,0,0.7); }
+
+        .lb-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: rgba(0,0,0,0.6);
+            border: 1px solid rgba(255,255,255,0.2);
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+            z-index: 10;
+        }
+
+        .lb-nav:hover { background: rgba(255,255,255,0.15); }
+        .lb-prev { left: -56px; }
+        .lb-next { right: -56px; }
+
+        @@media (max-width: 1020px) {
+            .lb-prev { left: 10px; top: 30%; }
+            .lb-next { right: 10px; top: 30%; }
         }
 
         .carousel-container {
@@ -2622,68 +2807,79 @@
             </div>
         </section>
 
-        <!-- CAROUSEL / PORTFOLIO SECTION -->
+        <!-- PORTFOLIO SECTION -->
         <section class="carousel-section" id="carousel">
             <span class="company-tag d-flex justify-content-center">Our Work</span>
-
             <h2 class="company-title" style="text-align: center;">See how we bring ideas to life.</h2>
-            <div class="carousel-container">
-                <ul class="carousel">
-                    <li class="items main-pos" id="1">
-                        <img src="/images/Portfolio/Vodcast2025.jpg" alt="Podcast Recording" />
-                        <div class="carousel-tag tag-audio">Audio</div>
-                        <div class="carousel-overlay">
-                            <h3>Podcast Recording</h3>
-                            <p>Controlled studio lighting and professional multi-camera production for a seamless viewing experience.</p>
-                        </div>
-                    </li>
-                    <li class="items right-pos" id="2">
-                        <img src="/images/Portfolio/DTGlobal2025.jpg" alt="Hybrid Event Broadcast" />
-                        <div class="carousel-tag tag-streaming">Live Streaming</div>
-                        <div class="carousel-overlay">
-                            <h3>Hybrid Event Broadcast</h3>
-                            <p>Seamless multi-camera Zoom streaming, crystal-clear audio, and live TV screen integration.</p>
-                        </div>
-                    </li>
-                    <li class="items back-pos" id="3">
-                        <img src="/images/Portfolio/Marsh2025.jpg" alt="Lighting FX" />
-                        <div class="carousel-tag tag-lighting">Lighting FX</div>
-                        <div class="carousel-overlay">
-                            <h3>Corporate Event Production</h3>
-                            <p>Professional audio, LED wall display, dynamic uplighting, and multi-camera video recordings.</p>
-                        </div>
-                    </li>
-                    <li class="items back-pos" id="4">
-                        <img src="/images/Portfolio/CorporateConference.jpg" alt="Corporate Conference" />
-                        <div class="carousel-tag tag-visuals">Visual Effects</div>
-                        <div class="carousel-overlay">
-                            <h3>Corporate Conference</h3>
-                            <p>Professional audio and TV screen integration for a seamless delegate experience.</p>
-                        </div>
-                    </li>
-                    <li class="items back-pos" id="5">
-                        <img src="/images/Portfolio/ProductPhotoshoot.jpg" alt="Product Photoshoot" />
-                        <div class="carousel-tag tag-photo">Photography</div>
-                        <div class="carousel-overlay">
-                            <h3>Commercial Product Shoot</h3>
-                            <p>High-quality product imagery designed for marketing, e-commerce, and brand campaigns.</p>
-                        </div>
-                    </li>
-                    <li class="items left-pos" id="6">
-                        <img src="/images/portfolio2.jpg" alt="Tech Expo" />
-                        <div class="carousel-tag tag-vr">VR/AR</div>
-                        <div class="carousel-overlay">
-                            <h3>Tech Expo VR Zone</h3>
-                            <p>Interactive VR experiences and AR installations that draw crowds and spark conversation.</p>
-                        </div>
-                    </li>
-                </ul>
-                <div class="carousel-controls">
-                    <button class="carousel-btn" id="prev"><i class="fas fa-chevron-left"></i></button>
-                    <button class="carousel-btn" id="next"><i class="fas fa-chevron-right"></i></button>
+
+            <div class="masonry-grid">
+                <div class="masonry-item" data-title="Podcast Recording" data-desc="Controlled studio lighting and professional multi-camera production for a seamless viewing experience." data-tag="Audio" data-tag-color="#ff3e00">
+                    <img src="/images/Portfolio/Vodcast2025.jpg" alt="Podcast Recording">
+                    <div class="masonry-overlay">
+                        <span class="masonry-tag" style="background:rgba(255,62,0,0.25);color:#ff3e00;">Audio</span>
+                        <h3>Podcast Recording</h3>
+                        <p>Click to view</p>
+                    </div>
+                </div>
+                <div class="masonry-item" data-title="Hybrid Event Broadcast" data-desc="Seamless multi-camera Zoom streaming, crystal-clear audio, and live TV screen integration." data-tag="Live Streaming" data-tag-color="#00a8ff">
+                    <img src="/images/Portfolio/DTGlobal2025.jpg" alt="Hybrid Event Broadcast">
+                    <div class="masonry-overlay">
+                        <span class="masonry-tag" style="background:rgba(0,168,255,0.25);color:#00a8ff;">Live Streaming</span>
+                        <h3>Hybrid Event Broadcast</h3>
+                        <p>Click to view</p>
+                    </div>
+                </div>
+                <div class="masonry-item" data-title="Corporate Event Production" data-desc="Professional audio, LED wall display, dynamic uplighting, and multi-camera video recordings." data-tag="Lighting FX" data-tag-color="#ffeb3b">
+                    <img src="/images/Portfolio/Marsh2025.jpg" alt="Corporate Event Production">
+                    <div class="masonry-overlay">
+                        <span class="masonry-tag" style="background:rgba(255,235,59,0.2);color:#ffeb3b;">Lighting FX</span>
+                        <h3>Corporate Event Production</h3>
+                        <p>Click to view</p>
+                    </div>
+                </div>
+                <div class="masonry-item" data-title="Corporate Conference" data-desc="Professional audio and TV screen integration for a seamless delegate experience." data-tag="Audio / Visual" data-tag-color="#9c27b0">
+                    <img src="/images/Portfolio/CorporateConference.JPG" alt="Corporate Conference">
+                    <div class="masonry-overlay">
+                        <span class="masonry-tag" style="background:rgba(156,39,176,0.25);color:#ce93d8;">Audio / Visual</span>
+                        <h3>Corporate Conference</h3>
+                        <p>Click to view</p>
+                    </div>
+                </div>
+                <div class="masonry-item" data-title="Commercial Product Shoot" data-desc="High-quality product imagery designed for marketing, e-commerce, and brand campaigns." data-tag="Photography" data-tag-color="#4CAF50">
+                    <img src="/images/Portfolio/ProductPhotoshoot.JPG" alt="Commercial Product Shoot">
+                    <div class="masonry-overlay">
+                        <span class="masonry-tag" style="background:rgba(76,175,80,0.25);color:#4CAF50;">Photography</span>
+                        <h3>Commercial Product Shoot</h3>
+                        <p>Click to view</p>
+                    </div>
+                </div>
+                <div class="masonry-item" data-title="Corporate Photoshoot" data-desc="Professional corporate photography capturing brand identity, team culture, and executive portraits." data-tag="Photography" data-tag-color="#4CAF50">
+                    <img src="/images/Portfolio/CorporatePhotoshoot.JPG" alt="Corporate Photoshoot">
+                    <div class="masonry-overlay">
+                        <span class="masonry-tag" style="background:rgba(76,175,80,0.25);color:#4CAF50;">Photography</span>
+                        <h3>Corporate Photoshoot</h3>
+                        <p>Click to view</p>
+                    </div>
                 </div>
             </div>
         </section>
+
+        <!-- LIGHTBOX -->
+        <div class="lightbox" id="lightbox">
+            <div class="lb-inner">
+                <button class="lb-close" id="lb-close"><i class="fas fa-times"></i></button>
+                <button class="lb-nav lb-prev" id="lb-prev"><i class="fas fa-chevron-left"></i></button>
+                <button class="lb-nav lb-next" id="lb-next"><i class="fas fa-chevron-right"></i></button>
+                <div class="lb-img-wrap">
+                    <img id="lb-img" src="" alt="">
+                </div>
+                <div class="lb-info">
+                    <span id="lb-tag" class="masonry-tag"></span>
+                    <h3 id="lb-title"></h3>
+                    <p id="lb-desc"></p>
+                </div>
+            </div>
+        </div>
 
         <!-- COMPANY SECTION -->
         <section class="company-section" id="company">
@@ -3201,61 +3397,58 @@
 
         }); // end document.ready
 
-        // ── Carousel ─────────────────────────────────────────────────
+        // ── Lightbox ──────────────────────────────────────────────────
         (function () {
-            var autoSwap = setInterval(swap, 3500);
+            const items = Array.from(document.querySelectorAll('.masonry-item'));
+            const lightbox = document.getElementById('lightbox');
+            const lbImg = document.getElementById('lb-img');
+            const lbTitle = document.getElementById('lb-title');
+            const lbDesc = document.getElementById('lb-desc');
+            const lbTag = document.getElementById('lb-tag');
+            let currentIndex = 0;
 
-            $('.carousel, .carousel-controls').hover(
-                function () { clearInterval(autoSwap); },
-                function () { autoSwap = setInterval(swap, 3500); }
-            );
-
-            var startItem = 1;
-            var position = 0;
-            var itemCount = $('.carousel li.items').length;
-            var resetCount = itemCount;
-
-            function swap(action) {
-                var direction = action;
-
-                if (direction == 'counter-clockwise') {
-                    var leftitem = $('.left-pos').attr('id') - 1;
-                    if (leftitem == 0) leftitem = itemCount;
-                    $('.right-pos').removeClass('right-pos').addClass('back-pos');
-                    $('.main-pos').removeClass('main-pos').addClass('right-pos');
-                    $('.left-pos').removeClass('left-pos').addClass('main-pos');
-                    $('#' + leftitem).removeClass('back-pos').addClass('left-pos');
-                    startItem--;
-                    if (startItem < 1) startItem = itemCount;
-                }
-
-                if (direction == 'clockwise' || direction == '' || direction == null) {
-                    function pos(positionvalue) {
-                        if (positionvalue != 'leftposition') {
-                            position++;
-                            if ((startItem + position) > resetCount) position = 1 - startItem;
-                        }
-                        if (positionvalue == 'leftposition') {
-                            position = startItem - 1;
-                            if (position < 1) position = itemCount;
-                        }
-                        return position;
-                    }
-                    $('#' + startItem).removeClass('main-pos').addClass('left-pos');
-                    $('#' + (startItem + pos())).removeClass('right-pos').addClass('main-pos');
-                    $('#' + (startItem + pos())).removeClass('back-pos').addClass('right-pos');
-                    $('#' + pos('leftposition')).removeClass('left-pos').addClass('back-pos');
-                    startItem++;
-                    position = 0;
-                    if (startItem > itemCount) startItem = 1;
-                }
+            function openLightbox(index) {
+                currentIndex = index;
+                const item = items[index];
+                lbImg.src = item.querySelector('img').src;
+                lbImg.alt = item.querySelector('img').alt;
+                lbTitle.textContent = item.dataset.title;
+                lbDesc.textContent = item.dataset.desc;
+                lbTag.textContent = item.dataset.tag;
+                lbTag.style.background = 'rgba(255,255,255,0.1)';
+                lbTag.style.color = item.dataset.tagColor || '#fff';
+                lightbox.classList.add('open');
+                document.body.style.overflow = 'hidden';
             }
 
-            $('#next').click(function () { swap('clockwise'); });
-            $('#prev').click(function () { swap('counter-clockwise'); });
-            $('.carousel li.items').click(function () {
-                if ($(this).hasClass('left-pos')) swap('counter-clockwise');
-                else swap('clockwise');
+            function closeLightbox() {
+                lightbox.classList.remove('open');
+                document.body.style.overflow = '';
+            }
+
+            items.forEach((item, i) => item.addEventListener('click', () => openLightbox(i)));
+
+            document.getElementById('lb-close').addEventListener('click', closeLightbox);
+
+            document.getElementById('lb-prev').addEventListener('click', (e) => {
+                e.stopPropagation();
+                openLightbox((currentIndex - 1 + items.length) % items.length);
+            });
+
+            document.getElementById('lb-next').addEventListener('click', (e) => {
+                e.stopPropagation();
+                openLightbox((currentIndex + 1) % items.length);
+            });
+
+            lightbox.addEventListener('click', (e) => {
+                if (e.target === lightbox) closeLightbox();
+            });
+
+            document.addEventListener('keydown', (e) => {
+                if (!lightbox.classList.contains('open')) return;
+                if (e.key === 'Escape') closeLightbox();
+                if (e.key === 'ArrowLeft') openLightbox((currentIndex - 1 + items.length) % items.length);
+                if (e.key === 'ArrowRight') openLightbox((currentIndex + 1) % items.length);
             });
         })();
     </script>
