@@ -2443,15 +2443,73 @@
             }
         }
 
-        @@media (max-width: 768px) {
-            .et-hero-tabs-container {
-                flex-wrap: wrap;
-                height: auto;
-            }
+        /* MOBILE HAMBURGER + OVERLAY NAV */
+        .mobile-hamburger {
+            display: none;
+            position: fixed;
+            top: 16px;
+            right: 16px;
+            z-index: 10001;
+            width: 44px;
+            height: 44px;
+            background: rgba(10,10,10,0.9);
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            cursor: pointer;
+            padding: 0;
+        }
 
-            .et-hero-tab {
-                flex: 1 0 33%;
-                border-bottom: 1px solid rgba(255,255,255,0.05);
+        .mobile-hamburger span {
+            display: block;
+            width: 20px;
+            height: 2px;
+            background: #fff;
+            border-radius: 2px;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        .mobile-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+        .mobile-hamburger.open span:nth-child(2) { opacity: 0; }
+        .mobile-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+        .mobile-nav-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 10000;
+            background: rgba(10,10,10,0.97);
+            backdrop-filter: blur(16px);
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .mobile-nav-overlay.open { display: flex; }
+
+        .mobile-nav-overlay a {
+            font-family: 'Bebas Neue', 'Oswald', 'Impact', sans-serif;
+            font-size: 3rem;
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            transition: color 0.2s ease;
+            padding: 8px 0;
+        }
+
+        .mobile-nav-overlay a:hover { color: #fff; }
+
+        @@media (max-width: 768px) {
+            .mobile-hamburger { display: flex; }
+
+            .et-hero-tabs-container {
+                display: none !important;
             }
 
             .et-hero-tab-slider {
@@ -2718,6 +2776,21 @@
         <div class="loading" id="loading">
             <div class="spinner"></div>
         </div>
+
+        <!-- MOBILE HAMBURGER BUTTON -->
+        <button class="mobile-hamburger" id="mobileHamburger" aria-label="Toggle navigation">
+            <span></span><span></span><span></span>
+        </button>
+
+        <!-- MOBILE FULLSCREEN NAV OVERLAY -->
+        <nav class="mobile-nav-overlay" id="mobileNavOverlay">
+            <a href="#home"         class="mobile-nav-link">Home</a>
+            <a href="#services"     class="mobile-nav-link">Services</a>
+            <a href="#carousel"     class="mobile-nav-link">Portfolio</a>
+            <a href="#company"      class="mobile-nav-link">Who We Are</a>
+            <a href="#testimonials" class="mobile-nav-link">Testimonials</a>
+            <a href="#contact"      class="mobile-nav-link">Contact</a>
+        </nav>
 
         <!-- STICKY SLIDER NAV -->
         <section class="et-hero-tabs">
@@ -3399,6 +3472,32 @@
                     container.style.position = 'absolute';
                     container.style.top = 'auto';
                     container.style.left = '0';
+                }
+            });
+
+            // ── Mobile hamburger menu ─────────────────────────────────
+            const hamburger = document.getElementById('mobileHamburger');
+            const mobileNav = document.getElementById('mobileNavOverlay');
+
+            hamburger.addEventListener('click', function () {
+                const isOpen = mobileNav.classList.toggle('open');
+                hamburger.classList.toggle('open', isOpen);
+                document.body.style.overflow = isOpen ? 'hidden' : '';
+            });
+
+            document.querySelectorAll('.mobile-nav-link').forEach(function (link) {
+                link.addEventListener('click', function () {
+                    mobileNav.classList.remove('open');
+                    hamburger.classList.remove('open');
+                    document.body.style.overflow = '';
+                });
+            });
+
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape' && mobileNav.classList.contains('open')) {
+                    mobileNav.classList.remove('open');
+                    hamburger.classList.remove('open');
+                    document.body.style.overflow = '';
                 }
             });
 
