@@ -1,9 +1,6 @@
 ﻿using KiefProductions_Site.Models;
-using MailKit.Net.Smtp;
-using MailKit.Security;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
-using MimeKit;
 using System.Diagnostics;
 using System.Net;
 using System.Net.Mail;
@@ -26,6 +23,7 @@ namespace KiefProductions_Site.Controllers
         public IActionResult Index()
         {
             ViewData["HideNavbar"] = true;
+            ViewData["Title"] = "Kief Productions | Event Production Company";
             return View();
         }
 
@@ -40,16 +38,16 @@ namespace KiefProductions_Site.Controllers
             try
             {
                 using var message = new MailMessage();
-                using var client = new System.Net.Mail.SmtpClient("smtp.gmail.com", 587);
-                client.EnableSsl = true;
+                using var client = new System.Net.Mail.SmtpClient(_smtpSettings.Host, _smtpSettings.Port);
+                client.EnableSsl = _smtpSettings.UseSsl;
                 client.UseDefaultCredentials = false;
-                client.Credentials = new NetworkCredential("info.kiefklank@gmail.com", "zbbwowycrnyecjoj");
+                client.Credentials = new NetworkCredential(_smtpSettings.Username, _smtpSettings.Password);
                 client.DeliveryMethod = SmtpDeliveryMethod.Network;
                 client.Timeout = 10000;
 
-                message.From = new MailAddress("info@kiefproductions.co.za", "Kief Website");
+                message.From = new MailAddress(_smtpSettings.Username, "Kief Website");
                 message.ReplyToList.Add(new MailAddress(model.Email, model.Name));
-                message.To.Add(new MailAddress("info@kiefproductions.co.za", "Kief Productions"));
+                message.To.Add(new MailAddress(_smtpSettings.RecipientEmail, _smtpSettings.RecipientName));
                 message.Subject = "Contact Form: " + model.Name;
                 message.Body = $"Name: {model.Name}\n" +
                               $"Email: {model.Email}\n" +

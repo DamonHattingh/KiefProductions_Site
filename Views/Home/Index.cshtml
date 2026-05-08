@@ -5,10 +5,19 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Production Company</title>
+    <title>@ViewData["Title"]</title>
 
-    <meta name="description" content="Professional audio, live streaming, photography, videography, lighting FX, and visual effects services for corporate events and productions">
-    <meta name="keywords" content="production company, audio, live streaming, photography, videography, lighting fx, visual effects, corporate events">
+    <meta name="description" content="Kief Productions — professional audio, live streaming, photography, videography, lighting FX, and visual effects for corporate events and productions across South Africa.">
+    <meta name="keywords" content="event production, Kief Productions, audio, live streaming, photography, videography, lighting FX, visual effects, LED screens, South Africa">
+    <meta name="robots" content="index, follow">
+
+    <meta property="og:title" content="Kief Productions | Event Production Company">
+    <meta property="og:description" content="Professional audio, live streaming, photography, videography, lighting FX, and visual effects for events of all scales.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="/images/Logo_White_Text.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Kief Productions | Event Production Company">
+    <meta name="twitter:description" content="Professional event production services across South Africa.">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
@@ -197,6 +206,13 @@
             background: rgba(10,10,10,0.95);
             backdrop-filter: blur(10px);
             z-index: 999;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+        }
+
+        .et-hero-tabs-container::-webkit-scrollbar {
+            display: none;
         }
 
         .et-hero-tabs-container--top {
@@ -211,13 +227,25 @@
             justify-content: center;
             align-items: center;
             flex: 1;
+            min-width: 90px;
             color: var(--gray-text);
-            letter-spacing: 0.1rem;
+            letter-spacing: 0.05rem;
             transition: all 0.3s ease;
-            font-size: 0.9rem;
+            font-size: 0.75rem;
             text-transform: uppercase;
             text-decoration: none;
             border-right: 1px solid rgba(255,255,255,0.05);
+            white-space: nowrap;
+            padding: 0 12px;
+        }
+
+        @@media (min-width: 600px) {
+            .et-hero-tab {
+                font-size: 0.9rem;
+                letter-spacing: 0.1rem;
+                min-width: unset;
+                padding: 0;
+            }
         }
 
             .et-hero-tab:last-child {
@@ -1811,6 +1839,14 @@
             height: 60px;
             border-radius: 50%;
             object-fit: cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: #fff;
+            flex-shrink: 0;
         }
 
         /* CONTACT */
@@ -2739,7 +2775,7 @@
                 <div class="testimonial active">
                     <p class="testimonial-text">"The audio quality and lighting design for our corporate event were exceptional. Professional, reliable, and exceeded our expectations!"</p>
                     <div class="client-info">
-                        <img src="/images/client1.jpg" alt="Client" class="client-avatar">
+                        <div class="client-avatar" style="background: linear-gradient(135deg, #ff3e00, #ff7043);">SJ</div>
                         <div class="client-details">
                             <h4>Sarah Johnson</h4>
                             <p>Event Manager, TechCorp</p>
@@ -2749,7 +2785,7 @@
                 <div class="testimonial">
                     <p class="testimonial-text">"Their live streaming setup and visual effects made our hybrid product launch seamless. The technical support was outstanding throughout."</p>
                     <div class="client-info">
-                        <img src="/images/client2.jpg" alt="Client" class="client-avatar">
+                        <div class="client-avatar" style="background: linear-gradient(135deg, #00a8ff, #0077cc);">MC</div>
                         <div class="client-details">
                             <h4>Michael Chen</h4>
                             <p>Marketing Director, Innovate Inc.</p>
@@ -2759,7 +2795,7 @@
                 <div class="testimonial">
                     <p class="testimonial-text">"The VR experience they created for our trade show was mind-blowing! It attracted twice the traffic to our booth. Incredible work!"</p>
                     <div class="client-info">
-                        <img src="/images/client3.jpg" alt="Client" class="client-avatar">
+                        <div class="client-avatar" style="background: linear-gradient(135deg, #9c27b0, #6a1b9a);">JW</div>
                         <div class="client-details">
                             <h4>Jessica Williams</h4>
                             <p>Brand Director, FutureTech</p>
@@ -2864,16 +2900,15 @@
                 <div class="footer-column">
                     <h3 class="footer-heading">Contact Info</h3>
                     <ul class="footer-links">
-                        <li><i class="fas fa-map-marker-alt"></i> 123 Production St, City, State 12345</li>
-                        <li><i class="fas fa-phone"></i> (555) 123-4567</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Pretoria, Gauteng, South Africa</li>
                         <li><i class="fas fa-envelope"></i> info@@kiefproductions.co.za</li>
-                        <li><i class="fas fa-clock"></i> Mon-Fri: 9am-6pm | Sat: 10am-4pm</li>
+                        <li><i class="fas fa-clock"></i> Mon–Fri: 9am–6pm | Sat: 10am–4pm</li>
                         <li><i class="fas fa-headset"></i> 24/7 Emergency Event Support</li>
                     </ul>
                 </div>
             </div>
             <div class="copyright">
-                <p>&copy; 2025 Kief Productions. All rights reserved. | Professional Event Production Services</p>
+                <p>&copy; 2026 Kief Productions. All rights reserved. | Professional Event Production Services</p>
             </div>
         </footer>
 
