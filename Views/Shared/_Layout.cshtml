@@ -58,5 +58,21 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
+    <script>
+        document.querySelectorAll('a[href]').forEach(function (link) {
+            const href = link.getAttribute('href');
+            if (!href || href.startsWith('#') || href.startsWith('mailto') || href.startsWith('tel') || link.target === '_blank') return;
+            try {
+                const url = new URL(link.href, window.location.origin);
+                if (url.hostname !== window.location.hostname) return;
+            } catch { return; }
+            link.addEventListener('click', function (e) {
+                e.preventDefault();
+                const dest = this.href;
+                document.body.classList.add('fade-out');
+                setTimeout(function () { window.location.href = dest; }, 300);
+            });
+        });
+    </script>
 </body>
 </html>

@@ -16,3 +16,18 @@ html {
   position: relative;
   min-height: 100%;
 }
+
+body {
+  animation: pageFadeIn 0.5s ease both;
+}
+
+@keyframes pageFadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+body.fade-out {
+  opacity: 0;
+  transform: translateY(-6px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
