@@ -1273,71 +1273,125 @@
             transform: translateY(-3px);
         }
 
-        /* SERVICES */
-        .services-section {
-            padding: 100px 40px;
-            background: linear-gradient(180deg, var(--dark-bg) 0%, #1a1a1a 100%);
-        }
-
-        .section-title {
-            text-align: center;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 3rem;
-            margin-bottom: 60px;
-            position: relative;
-        }
-
-            .section-title::after {
-                content: '';
-                position: absolute;
-                bottom: -15px;
-                left: 50%;
-                transform: translateX(-50%);
-                width: 100px;
-                height: 4px;
-                background: var(--primary-color);
-            }
-
-        .services-grid {
+        /* SERVICES BENTO */
+        .services-bento {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
             max-width: 1200px;
-            margin: 0 auto;
+            margin: 48px auto 0;
         }
 
-        .service-card {
-            background: var(--card-bg);
-            border-radius: 15px;
-            overflow: hidden;
-            transition: var(--transition);
-            position: relative;
-            border: 1px solid rgba(255,255,255,0.1);
-        }
-
-            .service-card:hover {
-                transform: translateY(-10px);
-                box-shadow: 0 20px 40px rgba(0,0,0,0.5);
-                border-color: rgba(255,255,255,0.2);
-            }
-
-        .service-image {
-            height: 200px;
-            background-size: cover;
-            background-position: center;
+        .svc-card {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.07);
+            border-radius: 16px;
+            padding: 36px 30px;
             position: relative;
             overflow: hidden;
+            transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
         }
 
-            .service-image::after {
-                content: '';
-                position: absolute;
-                top: 0;
-                left: 0;
-                right: 0;
-                bottom: 0;
-                background: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.8) 100%);
-            }
+        .svc-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at 50% -10%, var(--svc-accent) 0%, transparent 65%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            pointer-events: none;
+        }
+
+        .svc-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--svc-accent);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4), 0 0 24px color-mix(in srgb, var(--svc-accent) 20%, transparent);
+        }
+
+        .svc-card:hover::before { opacity: 1; }
+
+        .svc-icon-wrap {
+            width: 64px;
+            height: 64px;
+            border-radius: 14px;
+            background: color-mix(in srgb, var(--svc-accent) 12%, transparent);
+            border: 1px solid color-mix(in srgb, var(--svc-accent) 30%, transparent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            color: var(--svc-accent);
+            margin-bottom: 20px;
+            transition: transform 0.3s ease, background 0.3s ease;
+        }
+
+        .svc-card:hover .svc-icon-wrap {
+            transform: scale(1.1);
+            background: color-mix(in srgb, var(--svc-accent) 20%, transparent);
+        }
+
+        .svc-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+
+        .svc-desc {
+            font-size: 0.85rem;
+            color: #888;
+            line-height: 1.7;
+            margin-bottom: 0;
+            transition: margin 0.3s ease;
+        }
+
+        .svc-features {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, margin 0.4s ease;
+        }
+
+        .svc-card:hover .svc-features {
+            max-height: 200px;
+            margin-top: 16px;
+        }
+
+        .svc-features li {
+            font-size: 0.78rem;
+            color: #666;
+            padding: 4px 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .svc-features li i {
+            color: var(--svc-accent);
+            font-size: 0.6rem;
+        }
+
+        .svc-divider {
+            width: 32px;
+            height: 2px;
+            background: var(--svc-accent);
+            margin: 14px 0;
+            border-radius: 2px;
+            transition: width 0.3s ease;
+        }
+
+        .svc-card:hover .svc-divider { width: 56px; }
+
+        @@media (max-width: 900px) {
+            .services-bento { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @@media (max-width: 560px) {
+            .services-bento { grid-template-columns: 1fr; }
+        }
 
         .service-content {
             padding: 30px;
@@ -2717,99 +2771,88 @@
         <!-- SERVICES SECTION -->
         <section class="company-section" id="services">
             <span class="company-tag d-flex justify-content-center">Our Services</span>
-
             <h2 class="company-title" style="text-align: center;">You need it. We can do it.</h2>
-            <div class="services-grid">
-                <div class="service-card fade-in">
-                    <div class="service-image" style="background-image: url('/images/carousel-audio.jpg');"></div>
-                    <div class="service-content">
-                        <h3 class="service-title">Professional Audio</h3>
-                        <p class="service-description">Crystal clear sound for any event, from intimate gatherings to large-scale productions with state-of-the-art equipment and expert technicians.</p>
-                        <ul class="service-features audio-features">
-                            <li><i class="fas fa-check"></i> Live Sound Reinforcement</li>
-                            <li><i class="fas fa-check"></i> Professional Recording & Mixing</li>
-                            <li><i class="fas fa-check"></i> Wireless Systems & Microphones</li>
-                            <li><i class="fas fa-check"></i> Acoustic Treatment Design</li>
-                            <li><i class="fas fa-check"></i> Sound System Installation</li>
-                        </ul>
-                        <div class="service-cta"><a href="#contact" class="service-btn">Request Audio Quote <i class="fas fa-arrow-right"></i></a></div>
-                    </div>
+
+            <div class="services-bento">
+
+                <div class="svc-card fade-in" style="--svc-accent: #ff3e00;">
+                    <div class="svc-icon-wrap"><i class="fas fa-volume-up"></i></div>
+                    <div class="svc-divider"></div>
+                    <h3 class="svc-title">Professional Audio</h3>
+                    <p class="svc-desc">Crystal clear sound for any event — from intimate gatherings to large-scale productions.</p>
+                    <ul class="svc-features">
+                        <li><i class="fas fa-circle"></i> Live Sound Reinforcement</li>
+                        <li><i class="fas fa-circle"></i> Wireless Systems & Microphones</li>
+                        <li><i class="fas fa-circle"></i> Recording & Mixing</li>
+                        <li><i class="fas fa-circle"></i> Sound System Installation</li>
+                    </ul>
                 </div>
-                <div class="service-card fade-in">
-                    <div class="service-image" style="background-image: url('/images/carousel-livestream.jpg');"></div>
-                    <div class="service-content">
-                        <h3 class="service-title">Live Streaming</h3>
-                        <p class="service-description">Professional multi-camera live streaming for hybrid and virtual events with reliable broadcasting to all major platforms.</p>
-                        <ul class="service-features streaming-features">
-                            <li><i class="fas fa-check"></i> Multi-Camera Professional Setup</li>
-                            <li><i class="fas fa-check"></i> Platform Integration (Zoom, YouTube, etc.)</li>
-                            <li><i class="fas fa-check"></i> Real-time Graphics & Lower Thirds</li>
-                            <li><i class="fas fa-check"></i> Interactive Features & Q&A</li>
-                            <li><i class="fas fa-check"></i> Technical Director & Producer</li>
-                        </ul>
-                        <div class="service-cta"><a href="#contact" class="service-btn">Stream Your Event <i class="fas fa-arrow-right"></i></a></div>
-                    </div>
+
+                <div class="svc-card fade-in" style="--svc-accent: #00a8ff;">
+                    <div class="svc-icon-wrap"><i class="fas fa-broadcast-tower"></i></div>
+                    <div class="svc-divider"></div>
+                    <h3 class="svc-title">Live Streaming</h3>
+                    <p class="svc-desc">Professional multi-camera streaming for hybrid and virtual events on all major platforms.</p>
+                    <ul class="svc-features">
+                        <li><i class="fas fa-circle"></i> Multi-Camera Setup</li>
+                        <li><i class="fas fa-circle"></i> Zoom, YouTube & Custom Platforms</li>
+                        <li><i class="fas fa-circle"></i> Real-time Graphics & Lower Thirds</li>
+                        <li><i class="fas fa-circle"></i> Technical Director On-Site</li>
+                    </ul>
                 </div>
-                <div class="service-card fade-in">
-                    <div class="service-image" style="background-image: url('/images/carousel-photography.jpg');"></div>
-                    <div class="service-content">
-                        <h3 class="service-title">Photography & Videography</h3>
-                        <p class="service-description">Capture every moment with professional photography and cinematic videography that tells your story.</p>
-                        <ul class="service-features photo-features">
-                            <li><i class="fas fa-check"></i> 4K/8K Cinematic Video Production</li>
-                            <li><i class="fas fa-check"></i> Professional Event Photography</li>
-                            <li><i class="fas fa-check"></i> Aerial Drone Footage</li>
-                            <li><i class="fas fa-check"></i> Professional Post-Production Editing</li>
-                            <li><i class="fas fa-check"></i> Corporate & Commercial Shoots</li>
-                        </ul>
-                        <div class="service-cta"><a href="#contact" class="service-btn">Book Photo/Video <i class="fas fa-arrow-right"></i></a></div>
-                    </div>
+
+                <div class="svc-card fade-in" style="--svc-accent: #4CAF50;">
+                    <div class="svc-icon-wrap"><i class="fas fa-camera"></i></div>
+                    <div class="svc-divider"></div>
+                    <h3 class="svc-title">Photography & Videography</h3>
+                    <p class="svc-desc">Cinematic video and professional photography that captures your story perfectly.</p>
+                    <ul class="svc-features">
+                        <li><i class="fas fa-circle"></i> 4K Cinematic Video Production</li>
+                        <li><i class="fas fa-circle"></i> Professional Event Photography</li>
+                        <li><i class="fas fa-circle"></i> Aerial Drone Footage</li>
+                        <li><i class="fas fa-circle"></i> Post-Production Editing</li>
+                    </ul>
                 </div>
-                <div class="service-card fade-in">
-                    <div class="service-image" style="background-image: url('/images/carousel-lighting.jpg');"></div>
-                    <div class="service-content">
-                        <h3 class="service-title">Lighting FX & Design</h3>
-                        <p class="service-description">Transform any space with dynamic lighting effects, intelligent lighting systems, and atmospheric design that sets the perfect mood.</p>
-                        <ul class="service-features lighting-features">
-                            <li><i class="fas fa-check"></i> Intelligent Moving Lights & Lasers</li>
-                            <li><i class="fas fa-check"></i> LED Walls & Video Mapping</li>
-                            <li><i class="fas fa-check"></i> Atmospheric Effects (Fog, Haze)</li>
-                            <li><i class="fas fa-check"></i> Stage & Architectural Lighting</li>
-                            <li><i class="fas fa-check"></i> DMX Programming & Control</li>
-                        </ul>
-                        <div class="service-cta"><a href="#contact" class="service-btn">Design Lighting <i class="fas fa-arrow-right"></i></a></div>
-                    </div>
+
+                <div class="svc-card fade-in" style="--svc-accent: #ffeb3b;">
+                    <div class="svc-icon-wrap"><i class="fas fa-lightbulb"></i></div>
+                    <div class="svc-divider"></div>
+                    <h3 class="svc-title">Lighting FX & Design</h3>
+                    <p class="svc-desc">Transform any space with dynamic lighting effects and atmospheric design that sets the mood.</p>
+                    <ul class="svc-features">
+                        <li><i class="fas fa-circle"></i> Intelligent Moving Lights & Lasers</li>
+                        <li><i class="fas fa-circle"></i> LED Walls & Video Mapping</li>
+                        <li><i class="fas fa-circle"></i> Fog, Haze & Atmospheric Effects</li>
+                        <li><i class="fas fa-circle"></i> DMX Programming & Control</li>
+                    </ul>
                 </div>
-                <div class="service-card fade-in">
-                    <div class="service-image" style="background-image: url('/images/carousel-led.png');"></div>
-                    <div class="service-content">
-                        <h3 class="service-title">Visual Effects & Projection</h3>
-                        <p class="service-description">Create immersive experiences with stunning visual effects, 3D projection mapping, and interactive digital content.</p>
-                        <ul class="service-features visuals-features">
-                            <li><i class="fas fa-check"></i> 3D Projection Mapping</li>
-                            <li><i class="fas fa-check"></i> Real-time Visual Effects</li>
-                            <li><i class="fas fa-check"></i> Interactive Installations</li>
-                            <li><i class="fas fa-check"></i> LED Screen Content Creation</li>
-                            <li><i class="fas fa-check"></i> Augmented Reality Experiences</li>
-                        </ul>
-                        <div class="service-cta"><a href="#contact" class="service-btn">Create Visuals <i class="fas fa-arrow-right"></i></a></div>
-                    </div>
+
+                <div class="svc-card fade-in" style="--svc-accent: #9c27b0;">
+                    <div class="svc-icon-wrap"><i class="fas fa-magic"></i></div>
+                    <div class="svc-divider"></div>
+                    <h3 class="svc-title">Visual Effects & Projection</h3>
+                    <p class="svc-desc">Immersive experiences with 3D projection mapping, LED screens, and interactive digital content.</p>
+                    <ul class="svc-features">
+                        <li><i class="fas fa-circle"></i> 3D Projection Mapping</li>
+                        <li><i class="fas fa-circle"></i> Real-time Visual Effects</li>
+                        <li><i class="fas fa-circle"></i> LED Screen Content Creation</li>
+                        <li><i class="fas fa-circle"></i> Interactive Installations</li>
+                    </ul>
                 </div>
-                <div class="service-card fade-in">
-                    <div class="service-image" style="background-image: url('/images/vr-service.jpg');"></div>
-                    <div class="service-content">
-                        <h3 class="service-title">VR & AR Experiences</h3>
-                        <p class="service-description">Cutting-edge virtual and augmented reality experiences for immersive brand activations and innovative event solutions.</p>
-                        <ul class="service-features vr-features">
-                            <li><i class="fas fa-check"></i> Virtual Reality Installations</li>
-                            <li><i class="fas fa-check"></i> Augmented Reality Experiences</li>
-                            <li><i class="fas fa-check"></i> 360° Video Production</li>
-                            <li><i class="fas fa-check"></i> Interactive VR Content</li>
-                            <li><i class="fas fa-check"></i> Mixed Reality Events</li>
-                        </ul>
-                        <div class="service-cta"><a href="#contact" class="service-btn">Explore VR/AR <i class="fas fa-arrow-right"></i></a></div>
-                    </div>
+
+                <div class="svc-card fade-in" style="--svc-accent: #00bcd4;">
+                    <div class="svc-icon-wrap"><i class="fas fa-vr-cardboard"></i></div>
+                    <div class="svc-divider"></div>
+                    <h3 class="svc-title">VR & AR Experiences</h3>
+                    <p class="svc-desc">Cutting-edge virtual and augmented reality for immersive brand activations and event experiences.</p>
+                    <ul class="svc-features">
+                        <li><i class="fas fa-circle"></i> Virtual Reality Installations</li>
+                        <li><i class="fas fa-circle"></i> Augmented Reality Experiences</li>
+                        <li><i class="fas fa-circle"></i> 360° Video Production</li>
+                        <li><i class="fas fa-circle"></i> Mixed Reality Events</li>
+                    </ul>
                 </div>
+
             </div>
         </section>
 
@@ -3264,11 +3307,6 @@
                 showTestimonial(testimonialIndex);
             }, 5000);
 
-            // ── Service card hover ───────────────────────────────────
-            $('.service-card').hover(
-                function () { $(this).css('transform', 'translateY(-10px)'); },
-                function () { $(this).css('transform', 'translateY(0)'); }
-            );
 
             // ── Typed.js ─────────────────────────────────────────────
             const serviceImgs = document.querySelectorAll('.service-img');
