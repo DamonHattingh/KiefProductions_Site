@@ -1,6 +1,191 @@
-﻿@{
-    ViewData["Title"] = "Privacy Policy";
+@{
+    ViewData["Title"] = "Privacy Policy | Kief Productions";
 }
-<h1>@ViewData["Title"]</h1>
 
-<p>Use this page to detail your site's privacy policy.</p>
+<style>
+    body {
+        background-color: #0a0a0a;
+        color: #e0e0e0;
+    }
+
+    .privacy-wrapper {
+        max-width: 860px;
+        margin: 60px auto;
+        padding: 0 24px 80px;
+    }
+
+    .privacy-header {
+        border-bottom: 1px solid #2a2a2a;
+        padding-bottom: 32px;
+        margin-bottom: 48px;
+    }
+
+    .privacy-header .tag {
+        font-size: 11px;
+        letter-spacing: 4px;
+        text-transform: uppercase;
+        color: #ff3e00;
+        font-weight: 600;
+        margin-bottom: 12px;
+    }
+
+    .privacy-header h1 {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 2.4rem;
+        font-weight: 700;
+        color: #ffffff;
+        margin: 0 0 12px;
+    }
+
+    .privacy-header .updated {
+        font-size: 13px;
+        color: #666;
+    }
+
+    .privacy-section {
+        margin-bottom: 40px;
+    }
+
+    .privacy-section h2 {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: #ffffff;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 14px;
+        padding-left: 14px;
+        border-left: 3px solid #ff3e00;
+    }
+
+    .privacy-section p,
+    .privacy-section li {
+        font-size: 0.95rem;
+        line-height: 1.8;
+        color: #b0b0b0;
+        margin-bottom: 10px;
+    }
+
+    .privacy-section ul {
+        padding-left: 20px;
+    }
+
+    .privacy-section a {
+        color: #00a8ff;
+        text-decoration: none;
+    }
+
+    .privacy-section a:hover {
+        text-decoration: underline;
+    }
+
+    .privacy-contact-card {
+        background: #1a1a1a;
+        border: 1px solid #2a2a2a;
+        border-radius: 10px;
+        padding: 24px 28px;
+        margin-top: 16px;
+    }
+
+    .privacy-contact-card p {
+        margin: 0 0 6px;
+    }
+</style>
+
+<div class="privacy-wrapper">
+
+    <div class="privacy-header">
+        <p class="tag">Legal</p>
+        <h1>Privacy Policy</h1>
+        <p class="updated">Last updated: 8 May 2026</p>
+    </div>
+
+    <div class="privacy-section">
+        <h2>1. Introduction</h2>
+        <p>
+            Kief Productions ("we", "us", "our") is committed to protecting your personal information in accordance with
+            the <strong style="color:#fff;">Protection of Personal Information Act 4 of 2013 (POPIA)</strong>.
+            This policy explains what information we collect, why we collect it, how we use it, and your rights regarding that information.
+        </p>
+    </div>
+
+    <div class="privacy-section">
+        <h2>2. Information We Collect</h2>
+        <p>When you submit our contact form, we collect the following personal information:</p>
+        <ul>
+            <li>Full name</li>
+            <li>Email address</li>
+            <li>Phone number (optional)</li>
+            <li>Preferred event date</li>
+            <li>Event or enquiry details</li>
+        </ul>
+        <p>We do not collect any sensitive personal information as defined under POPIA.</p>
+    </div>
+
+    <div class="privacy-section">
+        <h2>3. Why We Collect Your Information</h2>
+        <p>We use your personal information solely to:</p>
+        <ul>
+            <li>Respond to your enquiry or quote request</li>
+            <li>Communicate with you about your event requirements</li>
+            <li>Provide the production services you have requested</li>
+        </ul>
+        <p>We will not use your information for any purpose other than the one for which it was collected without your prior consent.</p>
+    </div>
+
+    <div class="privacy-section">
+        <h2>4. How We Store Your Information</h2>
+        <p>
+            Contact form submissions are delivered directly to our internal email inbox and are not stored in a public-facing database.
+            We take reasonable technical and organisational measures to protect your personal information from unauthorised access, loss, or misuse.
+        </p>
+    </div>
+
+    <div class="privacy-section">
+        <h2>5. Sharing of Information</h2>
+        <p>
+            We do not sell, trade, or otherwise transfer your personal information to third parties.
+            Your information is only accessible to Kief Productions staff directly involved in handling your enquiry.
+        </p>
+    </div>
+
+    <div class="privacy-section">
+        <h2>6. Cookies</h2>
+        <p>
+            Our website does not currently use tracking cookies or analytics that collect personal information.
+            Standard server logs may record your IP address and browser type for security and performance purposes only.
+        </p>
+    </div>
+
+    <div class="privacy-section">
+        <h2>7. Your Rights Under POPIA</h2>
+        <p>You have the right to:</p>
+        <ul>
+            <li>Request access to the personal information we hold about you</li>
+            <li>Request correction of inaccurate or outdated information</li>
+            <li>Request deletion of your personal information</li>
+            <li>Object to the processing of your personal information</li>
+            <li>Lodge a complaint with the <strong style="color:#fff;">Information Regulator of South Africa</strong></li>
+        </ul>
+        <p>To exercise any of these rights, contact us using the details below.</p>
+    </div>
+
+    <div class="privacy-section">
+        <h2>8. Changes to This Policy</h2>
+        <p>
+            We may update this Privacy Policy from time to time. Any changes will be reflected on this page with an updated date.
+            We encourage you to review this policy periodically.
+        </p>
+    </div>
+
+    <div class="privacy-section">
+        <h2>9. Contact Us</h2>
+        <p>If you have any questions or concerns about this Privacy Policy or how your information is handled, please contact us:</p>
+        <div class="privacy-contact-card">
+            <p><strong style="color:#fff;">Kief Productions</strong></p>
+            <p>Pretoria, Gauteng, South Africa</p>
+            <p>Email: <a href="mailto:info@kiefproductions.co.za">info@kiefproductions.co.za</a></p>
+        </div>
+    </div>
+
+</div>

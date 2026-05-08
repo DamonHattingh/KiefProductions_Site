@@ -161,6 +161,7 @@ namespace KiefProductions_Site.Controllers
 
         public IActionResult Privacy()
         {
+            ViewData["HideNavbar"] = null;
             return View();
         }
 
