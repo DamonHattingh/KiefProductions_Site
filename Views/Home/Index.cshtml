@@ -2358,7 +2358,7 @@
                 align-items: center;
                 justify-content: flex-start;
                 padding: 0;
-                height: 70vh;
+                height: 25vh;
                 position: relative;
             }
 
@@ -2367,7 +2367,7 @@
                 right: 0;
                 top: 0;
                 bottom: 0;
-                width: 55%;
+                width: 75%;
                 height: 100%;
                 margin: 0;
                 border-radius: 0;
@@ -2774,6 +2774,14 @@
             border-radius: 10px; /* Optional: add rounded corners */
             border: gray 5px solid;
         }
+
+        @@media (max-width: 768px) {
+            #top-section
+        {
+            display: none;
+        }
+
+        }
     </style>
 </head>
 <body>
@@ -2828,11 +2836,14 @@
                         </span>
                         <span class="text"></span>
                     </h1>
-                    <p>Professional production services for events of every kind — from intimate gatherings to large-scale corporate productions.</p>
+                    <div id="top-section">
+                        <p>Professional production services for events of every kind — from intimate gatherings to large-scale corporate productions.</p>
                     <a href="#contact" class="book-link">
                         <span class="linktext">Get a Quote Today</span>
                         <span class="arrow"><span></span></span>
                     </a>
+                    </div>
+                    
                 </div>
                 <div class="right-part">
                     <div class="service-image-panel">
@@ -2853,21 +2864,15 @@
         </main>
 
         <!-- HERO SECTION -->
-        <section class="hero-section" id="hero">
+@*         <section class="hero-section" id="hero">
             <div class="hero-content">
-@*                 <h1 class="hero-title">Elevate Your Production</h1>
-                <p class="hero-subtitle">Professional audio, live streaming, photography, videography, lighting FX, and visual effects services that bring your vision to life</p>
-                <div class="cta-buttons">
-                    <a href="#services" class="btn-primary"><i class="fas fa-play-circle"></i> Our Services</a>
-                    <a href="#contact" class="btn-secondary">Get Started</a>
-                </div> *@
 
                 <video autoplay muted loop playsinline class="hero-video">
                     <source src="~/videos/Kief Final Parrty (Landscape).mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
             </div>
-        </section>
+        </section> *@
 
         <!-- SERVICES SECTION -->
         <section class="company-section" id="services">
