@@ -2843,6 +2843,78 @@
             </div>
         </section>
 
+        <!-- EVENTS MARQUEE SECTION -->
+        <section style="padding: 80px 0; background: #0d0d0d; overflow: hidden;">
+            <span class="company-tag d-flex justify-content-center">Where You'll Find Us</span>
+            <h2 class="company-title" style="text-align: center; margin-bottom: 48px;">Events We Cover</h2>
+
+            <div style="display: flex; flex-direction: column; gap: 16px; user-select: none;">
+
+                <!-- Row 1 — scrolls right -->
+                <div style="overflow: hidden; position: relative;">
+                    <div class="marquee-track marquee-right" style="display: flex; gap: 16px; width: max-content;">
+                        @foreach (var item in new[] {
+                            ("🏢", "Corporate Events"), ("🎤", "Conferences"), ("🚀", "Product Launches"),
+                            ("🏆", "Award Ceremonies"), ("🥂", "Gala Dinners"), ("🏛️", "Trade Shows"), ("📊", "Expos"),
+                            ("🏢", "Corporate Events"), ("🎤", "Conferences"), ("🚀", "Product Launches"),
+                            ("🏆", "Award Ceremonies"), ("🥂", "Gala Dinners"), ("🏛️", "Trade Shows"), ("📊", "Expos")
+                        }) {
+                            <span style="display: inline-flex; align-items: center; gap: 8px; background: #1a1a1a; border: 1px solid #2e2e2e; border-radius: 50px; padding: 12px 24px; font-size: 15px; color: #ffffff; white-space: nowrap; font-weight: 500; flex-shrink: 0;">
+                                <span style="font-size: 18px;">@item.Item1</span>@item.Item2
+                            </span>
+                        }
+                    </div>
+                </div>
+
+                <!-- Row 2 — scrolls left -->
+                <div style="overflow: hidden; position: relative;">
+                    <div class="marquee-track marquee-left" style="display: flex; gap: 16px; width: max-content;">
+                        @foreach (var item in new[] {
+                            ("💍", "Weddings"), ("🎂", "Birthday Parties"), ("🎓", "Matric Farewells"), ("💑", "Engagement Parties"),
+                            ("🎸", "Concerts"), ("🎪", "Festivals"), ("🌿", "Outdoor Events"),
+                            ("💍", "Weddings"), ("🎂", "Birthday Parties"), ("🎓", "Matric Farewells"), ("💑", "Engagement Parties"),
+                            ("🎸", "Concerts"), ("🎪", "Festivals"), ("🌿", "Outdoor Events")
+                        }) {
+                            <span style="display: inline-flex; align-items: center; gap: 8px; background: #1a1a1a; border: 1px solid #ff3e00; border-radius: 50px; padding: 12px 24px; font-size: 15px; color: #ffffff; white-space: nowrap; font-weight: 500; flex-shrink: 0;">
+                                <span style="font-size: 18px;">@item.Item1</span>@item.Item2
+                            </span>
+                        }
+                    </div>
+                </div>
+
+                <!-- Row 3 — scrolls right -->
+                <div style="overflow: hidden; position: relative;">
+                    <div class="marquee-track marquee-right" style="display: flex; gap: 16px; width: max-content;">
+                        @foreach (var item in new[] {
+                            ("📋", "AGMs"), ("🤝", "Team Building"), ("😂", "Comedy Shows"), ("⛪", "Church Events"),
+                            ("🎓", "University Events"), ("❤️", "Charity Galas"), ("🏅", "Sports Events"), ("🏛️", "Government Events"),
+                            ("📋", "AGMs"), ("🤝", "Team Building"), ("😂", "Comedy Shows"), ("⛪", "Church Events"),
+                            ("🎓", "University Events"), ("❤️", "Charity Galas"), ("🏅", "Sports Events"), ("🏛️", "Government Events")
+                        }) {
+                            <span style="display: inline-flex; align-items: center; gap: 8px; background: #1a1a1a; border: 1px solid #2e2e2e; border-radius: 50px; padding: 12px 24px; font-size: 15px; color: #ffffff; white-space: nowrap; font-weight: 500; flex-shrink: 0;">
+                                <span style="font-size: 18px;">@item.Item1</span>@item.Item2
+                            </span>
+                        }
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <style>
+            @@keyframes marquee-right {
+                from { transform: translateX(0); }
+                to   { transform: translateX(-50%); }
+            }
+            @@keyframes marquee-left {
+                from { transform: translateX(-50%); }
+                to   { transform: translateX(0); }
+            }
+            .marquee-right { animation: marquee-right 30s linear infinite; }
+            .marquee-left  { animation: marquee-left  30s linear infinite; }
+            .marquee-track:hover { animation-play-state: paused; }
+        </style>
+
         <!-- PORTFOLIO SECTION -->
         <section class="carousel-section" id="carousel">
             <span class="company-tag d-flex justify-content-center">Our Work</span>
