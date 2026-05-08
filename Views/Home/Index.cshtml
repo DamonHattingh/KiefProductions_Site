@@ -2445,7 +2445,7 @@
 
         /* MOBILE HAMBURGER + OVERLAY NAV */
         .mobile-hamburger {
-            display: none;
+            display: flex;
             width: 44px;
             height: 44px;
             background: rgba(10,10,10,0.9);
@@ -2508,8 +2508,22 @@
 
         .mobile-nav-overlay a:hover { color: #fff; }
 
+        .nav-logo-mobile {
+            display: none;
+        }
+
         @@media (max-width: 768px) {
             .mobile-hamburger { display: flex; }
+
+            .nav-logo-desktop { display: none; }
+
+            .nav-logo-mobile {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 16px;
+                width: 100%;
+            }
 
             .et-hero-tabs-container {
                 display: none !important;
@@ -2780,23 +2794,16 @@
             <div class="spinner"></div>
         </div>
 
-        <!-- MOBILE FULLSCREEN NAV OVERLAY -->
-        <nav class="mobile-nav-overlay" id="mobileNavOverlay">
-            <a href="#home"         class="mobile-nav-link">Home</a>
-            <a href="#services"     class="mobile-nav-link">Services</a>
-            <a href="#carousel"     class="mobile-nav-link">Portfolio</a>
-            <a href="#company"      class="mobile-nav-link">Who We Are</a>
-            <a href="#testimonials" class="mobile-nav-link">Testimonials</a>
-            <a href="#contact"      class="mobile-nav-link">Contact</a>
-        </nav>
-
         <!-- STICKY SLIDER NAV -->
         <section class="et-hero-tabs">
-            <img src="/images/Logo_White_Text.png" alt="Logo" style="width: 450px; max-width: 80vw; margin-bottom: 30px;" />
-            <!-- Hamburger sits below logo on mobile; JS makes it fixed when scrolled past hero -->
-            <button class="mobile-hamburger" id="mobileHamburger" aria-label="Toggle navigation">
-                <span></span><span></span><span></span>
-            </button>
+            <!-- Desktop: full logo. Mobile: short logo + hamburger side by side -->
+            <img src="/images/Logo_White_Text.png" alt="Logo" class="nav-logo-desktop" style="width: 450px; max-width: 80vw; margin-bottom: 30px;" />
+            <div class="nav-logo-mobile">
+                <img src="/images/TextWhite.png" alt="Kief Productions" style="height: 40px; width: auto;" />
+                <button class="mobile-hamburger" id="mobileHamburger" aria-label="Toggle navigation">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
             <div class="et-hero-tabs-container">
                 <a class="et-hero-tab" href="#home">Home</a>
                 <a class="et-hero-tab" href="#services">Services</a>
@@ -3396,6 +3403,16 @@
         </div>
 
     </div><!-- end content-wrapper -->
+
+    <!-- MOBILE FULLSCREEN NAV OVERLAY (outside content-wrapper so parent opacity doesn't hide it) -->
+    <nav class="mobile-nav-overlay" id="mobileNavOverlay">
+        <a href="#home"         class="mobile-nav-link">Home</a>
+        <a href="#services"     class="mobile-nav-link">Services</a>
+        <a href="#carousel"     class="mobile-nav-link">Portfolio</a>
+        <a href="#company"      class="mobile-nav-link">Who We Are</a>
+        <a href="#testimonials" class="mobile-nav-link">Testimonials</a>
+        <a href="#contact"      class="mobile-nav-link">Contact</a>
+    </nav>
     @section Scripts {
         <partial name="_ValidationScriptsPartial" />
     }
