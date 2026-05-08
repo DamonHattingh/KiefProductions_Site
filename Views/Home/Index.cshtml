@@ -2355,6 +2355,7 @@
             .info-section {
                 display: block;
                 padding: 0;
+                height: auto;
             }
 
             .bg-line {
@@ -2362,21 +2363,32 @@
             }
 
             .left-part {
-                padding: 40px 16px 60px;
+                padding: 40px 16px 40px;
+                margin-left: 0;
             }
 
-            .right-part {
-                height: 334px;
-                width: 334px;
-                margin: 0 auto;
+            .left-part h1 {
+                font-size: 90px;
             }
 
             .left-part h1 .text {
-                height: auto;
+                height: 100px;
+                line-height: 90px;
+            }
+
+            .left-part h1 .d-flex {
+                gap: 1rem;
+            }
+
+            .right-part {
+                height: 280px;
+                width: 100%;
+                margin: 0;
+                border-radius: 0;
             }
 
             .left-part p {
-                font-size: 12px;
+                font-size: 13px;
                 width: 96%;
             }
 
@@ -2392,8 +2404,8 @@
             }
 
             .book-link {
-                font-size: 42px;
-                gap: 20px;
+                font-size: 32px;
+                gap: 16px;
                 margin-top: 24px;
             }
 
@@ -2404,6 +2416,30 @@
             .bg-circle-h-line {
                 width: 126px;
                 height: 65px;
+            }
+        }
+
+        @@media screen and (max-width: 480px) {
+            .left-part h1 {
+                font-size: 68px;
+            }
+
+            .left-part h1 .text {
+                height: 76px;
+                line-height: 68px;
+            }
+
+            .left-part h1 .d-flex {
+                gap: 0.6rem;
+            }
+
+            .book-link {
+                font-size: 24px;
+                gap: 12px;
+            }
+
+            .right-part {
+                height: 220px;
             }
         }
 
@@ -2471,6 +2507,18 @@
 
             .partner-image {
                 height: 350px;
+            }
+
+            #contactForm {
+                width: 95% !important;
+            }
+
+            #contactForm button[type="submit"] {
+                width: 100% !important;
+            }
+
+            .form__group {
+                margin-right: 0;
             }
         }
 
@@ -2673,7 +2721,7 @@
 
         <!-- STICKY SLIDER NAV -->
         <section class="et-hero-tabs">
-            <img src="/images/Logo_White_Text.png" alt="Logo" style="width: 450px; margin-bottom: 30px;" />
+            <img src="/images/Logo_White_Text.png" alt="Logo" style="width: 450px; max-width: 80vw; margin-bottom: 30px;" />
             <div class="et-hero-tabs-container">
                 <a class="et-hero-tab" href="#home">Home</a>
                 <a class="et-hero-tab" href="#services">Services</a>
