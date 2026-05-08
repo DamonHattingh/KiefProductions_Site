@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+Disallow: /Home/Error
+Disallow: /Home/Privacy
+
+Sitemap: https://www.kiefproductions.co.za/sitemap.xml
