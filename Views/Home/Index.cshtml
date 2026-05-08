@@ -2446,10 +2446,6 @@
         /* MOBILE HAMBURGER + OVERLAY NAV */
         .mobile-hamburger {
             display: none;
-            position: fixed;
-            top: 16px;
-            right: 16px;
-            z-index: 10001;
             width: 44px;
             height: 44px;
             background: rgba(10,10,10,0.9);
@@ -2462,6 +2458,13 @@
             gap: 5px;
             cursor: pointer;
             padding: 0;
+            z-index: 10001;
+        }
+
+        .mobile-hamburger.sticky {
+            position: fixed;
+            top: 12px;
+            right: 16px;
         }
 
         .mobile-hamburger span {
@@ -2777,11 +2780,6 @@
             <div class="spinner"></div>
         </div>
 
-        <!-- MOBILE HAMBURGER BUTTON -->
-        <button class="mobile-hamburger" id="mobileHamburger" aria-label="Toggle navigation">
-            <span></span><span></span><span></span>
-        </button>
-
         <!-- MOBILE FULLSCREEN NAV OVERLAY -->
         <nav class="mobile-nav-overlay" id="mobileNavOverlay">
             <a href="#home"         class="mobile-nav-link">Home</a>
@@ -2795,6 +2793,10 @@
         <!-- STICKY SLIDER NAV -->
         <section class="et-hero-tabs">
             <img src="/images/Logo_White_Text.png" alt="Logo" style="width: 450px; max-width: 80vw; margin-bottom: 30px;" />
+            <!-- Hamburger sits below logo on mobile; JS makes it fixed when scrolled past hero -->
+            <button class="mobile-hamburger" id="mobileHamburger" aria-label="Toggle navigation">
+                <span></span><span></span><span></span>
+            </button>
             <div class="et-hero-tabs-container">
                 <a class="et-hero-tab" href="#home">Home</a>
                 <a class="et-hero-tab" href="#services">Services</a>
@@ -3461,44 +3463,48 @@
             const heroTabs = document.querySelector('.et-hero-tabs');
             const heroHeight = heroTabs ? heroTabs.offsetHeight : 400;
 
+            const hamburgerBtn = document.getElementById('mobileHamburger');
+
             window.addEventListener('scroll', () => {
-                if (window.scrollY > heroHeight - 70) {
-                    container.classList.add('et-hero-tabs-container--top');
-                    container.style.position = 'fixed';
-                    container.style.top = '0';
-                    container.style.left = '0';
+                const pastHero = window.scrollY > heroHeight - 70;
+                if (window.innerWidth <= 768) {
+                    hamburgerBtn.classList.toggle('sticky', pastHero);
                 } else {
-                    container.classList.remove('et-hero-tabs-container--top');
-                    container.style.position = 'absolute';
-                    container.style.top = 'auto';
-                    container.style.left = '0';
+                    if (pastHero) {
+                        container.classList.add('et-hero-tabs-container--top');
+                        container.style.position = 'fixed';
+                        container.style.top = '0';
+                        container.style.left = '0';
+                    } else {
+                        container.classList.remove('et-hero-tabs-container--top');
+                        container.style.position = 'absolute';
+                        container.style.top = 'auto';
+                        container.style.left = '0';
+                    }
                 }
             });
 
             // ── Mobile hamburger menu ─────────────────────────────────
-            const hamburger = document.getElementById('mobileHamburger');
             const mobileNav = document.getElementById('mobileNavOverlay');
 
-            hamburger.addEventListener('click', function () {
+            function closeMobileNav() {
+                mobileNav.classList.remove('open');
+                hamburgerBtn.classList.remove('open');
+                document.body.style.overflow = '';
+            }
+
+            hamburgerBtn.addEventListener('click', function () {
                 const isOpen = mobileNav.classList.toggle('open');
-                hamburger.classList.toggle('open', isOpen);
+                hamburgerBtn.classList.toggle('open', isOpen);
                 document.body.style.overflow = isOpen ? 'hidden' : '';
             });
 
             document.querySelectorAll('.mobile-nav-link').forEach(function (link) {
-                link.addEventListener('click', function () {
-                    mobileNav.classList.remove('open');
-                    hamburger.classList.remove('open');
-                    document.body.style.overflow = '';
-                });
+                link.addEventListener('click', closeMobileNav);
             });
 
             document.addEventListener('keydown', function (e) {
-                if (e.key === 'Escape' && mobileNav.classList.contains('open')) {
-                    mobileNav.classList.remove('open');
-                    hamburger.classList.remove('open');
-                    document.body.style.overflow = '';
-                }
+                if (e.key === 'Escape' && mobileNav.classList.contains('open')) closeMobileNav();
             });
 
             // ── Testimonial slider ───────────────────────────────────
