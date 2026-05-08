@@ -1286,9 +1286,9 @@
 
         .svc-item {
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             gap: 18px;
-            padding: 22px 28px;
+            padding: 26px 28px;
             border-bottom: 1px solid rgba(255,255,255,0.07);
             transition: background 0.2s ease;
         }
@@ -1312,14 +1312,47 @@
             width: 22px;
             text-align: center;
             flex-shrink: 0;
+            margin-top: 3px;
+        }
+
+        .svc-item-body {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
         }
 
         .svc-item span {
             font-family: 'Montserrat', sans-serif;
             font-size: 0.9rem;
-            font-weight: 600;
+            font-weight: 700;
             color: #e0e0e0;
             letter-spacing: 0.3px;
+        }
+
+        .svc-bullets {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .svc-bullets li {
+            font-size: 0.78rem;
+            color: #666;
+            display: flex;
+            align-items: center;
+            gap: 7px;
+        }
+
+        .svc-bullets li::before {
+            content: '';
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background: #ff3e00;
+            flex-shrink: 0;
         }
 
         @@media (max-width: 600px) {
@@ -2710,14 +2743,103 @@
             <h2 class="company-title" style="text-align: center;">You need it. We can do it.</h2>
 
             <div class="services-list">
-                <div class="svc-item"><i class="fas fa-volume-up"></i><span>Professional Audio</span></div>
-                <div class="svc-item"><i class="fas fa-lightbulb"></i><span>Lighting & FX</span></div>
-                <div class="svc-item"><i class="fas fa-broadcast-tower"></i><span>Live Streaming</span></div>
-                <div class="svc-item"><i class="fas fa-tv"></i><span>LED Screens & Projection</span></div>
-                <div class="svc-item"><i class="fas fa-archway"></i><span>Stage & Rigging</span></div>
-                <div class="svc-item"><i class="fas fa-camera"></i><span>Photography & Videography</span></div>
-                <div class="svc-item"><i class="fas fa-fire"></i><span>Cold Sparks & Special Effects</span></div>
-                <div class="svc-item"><i class="fas fa-record-vinyl"></i><span>Webcasting & Recording</span></div>
+
+                <div class="svc-item">
+                    <i class="fas fa-volume-up"></i>
+                    <div class="svc-item-body">
+                        <span>Professional Audio</span>
+                        <ul class="svc-bullets">
+                            <li>Front of house & monitor mixing</li>
+                            <li>Wireless microphone systems</li>
+                            <li>Line arrays & PA systems</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="svc-item">
+                    <i class="fas fa-lightbulb"></i>
+                    <div class="svc-item-body">
+                        <span>Lighting & FX</span>
+                        <ul class="svc-bullets">
+                            <li>Intelligent moving lights & wash fixtures</li>
+                            <li>DMX programming & show control</li>
+                            <li>Uplighting, gobo & truss design</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="svc-item">
+                    <i class="fas fa-broadcast-tower"></i>
+                    <div class="svc-item-body">
+                        <span>Live Streaming</span>
+                        <ul class="svc-bullets">
+                            <li>Multi-camera production</li>
+                            <li>Zoom, YouTube, Teams & custom platforms</li>
+                            <li>Graphics, lower thirds & switching</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="svc-item">
+                    <i class="fas fa-tv"></i>
+                    <div class="svc-item-body">
+                        <span>LED Screens & Projection</span>
+                        <ul class="svc-bullets">
+                            <li>Indoor & outdoor LED walls</li>
+                            <li>TV screens & confidence monitors</li>
+                            <li>Data projectors & projection screens</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="svc-item">
+                    <i class="fas fa-archway"></i>
+                    <div class="svc-item-body">
+                        <span>Stage & Rigging</span>
+                        <ul class="svc-bullets">
+                            <li>Modular stage platforms & risers</li>
+                            <li>Trussing & overhead rigging</li>
+                            <li>Lecterns, podiums & staging accessories</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="svc-item">
+                    <i class="fas fa-camera"></i>
+                    <div class="svc-item-body">
+                        <span>Photography & Videography</span>
+                        <ul class="svc-bullets">
+                            <li>Professional event photography</li>
+                            <li>4K multi-camera video production</li>
+                            <li>Editing & post-production delivery</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="svc-item">
+                    <i class="fas fa-fire"></i>
+                    <div class="svc-item-body">
+                        <span>Cold Sparks & Special Effects</span>
+                        <ul class="svc-bullets">
+                            <li>Cold spark fountain machines</li>
+                            <li>Low-lying fog & CO₂ jets</li>
+                            <li>Confetti & streamer cannons</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="svc-item">
+                    <i class="fas fa-record-vinyl"></i>
+                    <div class="svc-item-body">
+                        <span>Webcasting & Recording</span>
+                        <ul class="svc-bullets">
+                            <li>Full event video recording</li>
+                            <li>Edited highlight reels</li>
+                            <li>On-demand webcast delivery</li>
+                        </ul>
+                    </div>
+                </div>
+
             </div>
         </section>
 
