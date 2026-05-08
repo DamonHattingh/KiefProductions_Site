@@ -2812,7 +2812,7 @@
             <img src="/images/Logo_White_Text.png" alt="Logo" class="nav-logo-desktop" style="width: 450px; max-width: 80vw; margin-bottom: 30px;" />
             <div class="nav-logo-mobile">
                 <img src="/images/TextWhite.png" alt="Kief Productions" style="height: 70px; width: auto;" />
-                <button class="mobile-hamburger" id="mobileHamburger" aria-label="Toggle navigation">
+                <button class="mobile-hamburger" id="mobileHamburger" onclick="toggleMobileNav(this)" aria-label="Toggle navigation">
                     <span></span><span></span><span></span>
                 </button>
             </div>
@@ -3418,13 +3418,33 @@
 
     <!-- MOBILE FULLSCREEN NAV OVERLAY (outside content-wrapper so parent opacity doesn't hide it) -->
     <nav class="mobile-nav-overlay" id="mobileNavOverlay">
-        <a href="#home"         class="mobile-nav-link">Home</a>
-        <a href="#services"     class="mobile-nav-link">Services</a>
-        <a href="#carousel"     class="mobile-nav-link">Portfolio</a>
-        <a href="#company"      class="mobile-nav-link">Who We Are</a>
-        <a href="#testimonials" class="mobile-nav-link">Testimonials</a>
-        <a href="#contact"      class="mobile-nav-link">Contact</a>
+        <a href="#home"         onclick="closeMobileNav()">Home</a>
+        <a href="#services"     onclick="closeMobileNav()">Services</a>
+        <a href="#carousel"     onclick="closeMobileNav()">Portfolio</a>
+        <a href="#company"      onclick="closeMobileNav()">Who We Are</a>
+        <a href="#testimonials" onclick="closeMobileNav()">Testimonials</a>
+        <a href="#contact"      onclick="closeMobileNav()">Contact</a>
     </nav>
+
+    <script>
+        function toggleMobileNav(btn) {
+            var overlay = document.getElementById('mobileNavOverlay');
+            var opening = !overlay.classList.contains('open');
+            overlay.classList.toggle('open', opening);
+            btn.classList.toggle('open', opening);
+            document.body.style.overflow = opening ? 'hidden' : '';
+        }
+        function closeMobileNav() {
+            var btn = document.getElementById('mobileHamburger');
+            var overlay = document.getElementById('mobileNavOverlay');
+            if (overlay) overlay.classList.remove('open');
+            if (btn) btn.classList.remove('open');
+            document.body.style.overflow = '';
+        }
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') closeMobileNav();
+        });
+    </script>
     @section Scripts {
         <partial name="_ValidationScriptsPartial" />
     }
@@ -3513,33 +3533,7 @@
                 }
             });
 
-            // ── Mobile hamburger menu ─────────────────────────────────
-            (function () {
-                var btn = document.getElementById('mobileHamburger');
-                var overlay = document.getElementById('mobileNavOverlay');
-                if (!btn || !overlay) return;
-
-                function closeMenu() {
-                    overlay.classList.remove('open');
-                    btn.classList.remove('open');
-                    document.body.style.overflow = '';
-                }
-
-                btn.addEventListener('click', function () {
-                    var opening = !overlay.classList.contains('open');
-                    overlay.classList.toggle('open', opening);
-                    btn.classList.toggle('open', opening);
-                    document.body.style.overflow = opening ? 'hidden' : '';
-                });
-
-                overlay.querySelectorAll('a').forEach(function (a) {
-                    a.addEventListener('click', closeMenu);
-                });
-
-                document.addEventListener('keydown', function (e) {
-                    if (e.key === 'Escape') closeMenu();
-                });
-            }());
+            // Mobile nav handled via global toggleMobileNav / closeMobileNav functions
 
             // ── Testimonial slider ───────────────────────────────────
             let testimonialIndex = 0;
