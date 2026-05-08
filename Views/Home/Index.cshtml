@@ -2994,7 +2994,7 @@
                     const activeTab = tabs[activeIndex];
                     if (activeTab) {
                         slider.style.width = activeTab.offsetWidth + 'px';
-                        slider.style.left = activeTab.offsetLeft + 'px';
+                        slider.style.left = (activeTab.offsetLeft - container.scrollLeft) + 'px';
                     }
                 }
             };
@@ -3100,31 +3100,30 @@
             });
 
             // ── Active nav on scroll ─────────────────────────────────
-            const sectionMap = {
-                'home': 'home', 'services': 'services', 'carousel': 'carousel',
-                'company': 'company', 'testimonials': 'testimonials', 'contact': 'contact'
-            };
+            const sections = Array.from(document.querySelectorAll('section[id]'));
 
-            const navObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const sectionId = entry.target.id;
-                        tabs.forEach(tab => tab.classList.remove('active'));
-                        tabs.forEach(tab => {
-                            const href = tab.getAttribute('href')?.replace('#', '');
-                            if (href === sectionId || sectionMap[sectionId] === href) {
-                                tab.classList.add('active');
-                                if (slider) {
-                                    slider.style.width = tab.offsetWidth + 'px';
-                                    slider.style.left = tab.offsetLeft + 'px';
-                                }
-                            }
-                        });
-                    }
+            function updateActiveNav() {
+                const scrollY = window.scrollY + 60;
+                let current = sections[0];
+                sections.forEach(section => {
+                    if (section.offsetTop <= scrollY) current = section;
                 });
-            }, { threshold: 0.3, rootMargin: '-80px 0px -40% 0px' });
+                if (!current) return;
+                tabs.forEach(tab => tab.classList.remove('active'));
+                const activeTab = Array.from(tabs).find(tab =>
+                    tab.getAttribute('href') === '#' + current.id
+                );
+                if (activeTab) {
+                    activeTab.classList.add('active');
+                    if (slider) {
+                        slider.style.width = activeTab.offsetWidth + 'px';
+                        slider.style.left = (activeTab.offsetLeft - container.scrollLeft) + 'px';
+                    }
+                }
+            }
 
-            document.querySelectorAll('section[id]').forEach(sec => navObserver.observe(sec));
+            window.addEventListener('scroll', updateActiveNav);
+            updateActiveNav();
 
             // ── AJAX Contact Form ────────────────────────────────────
             const contactForm = document.getElementById('contactForm');
