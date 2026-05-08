@@ -35,52 +35,36 @@ namespace KiefProductions_Site.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return View(model);
+                return Json(new { success = false, message = "Please fill in all required fields." });
             }
-
             try
             {
                 using var message = new MailMessage();
                 using var client = new System.Net.Mail.SmtpClient("smtp.gmail.com", 587);
-
                 client.EnableSsl = true;
-                client.UseDefaultCredentials = false; // THIS IS IMPORTANT
-                // Your GMAIL credentials for sending
+                client.UseDefaultCredentials = false;
                 client.Credentials = new NetworkCredential("info.kiefklank@gmail.com", "zbbwowycrnyecjoj");
-
                 client.DeliveryMethod = SmtpDeliveryMethod.Network;
                 client.Timeout = 10000;
 
-                // THIS IS THE KEY - Set From as your .co.za address
                 message.From = new MailAddress("info@kiefproductions.co.za", "Kief Website");
-
-                // Reply-to set to the person filling the form
                 message.ReplyToList.Add(new MailAddress(model.Email, model.Name));
-
-                // Send to yourself
                 message.To.Add(new MailAddress("info@kiefproductions.co.za", "Kief Productions"));
-
                 message.Subject = "Contact Form: " + model.Name;
                 message.Body = $"Name: {model.Name}\n" +
                               $"Email: {model.Email}\n" +
                               $"Phone: {model.PhoneNumber}\n" +
                               $"Date: {model.Date.ToShortDateString()}\n\n" +
-                              $"Message:\n{model.Details}";
-
-                // Add the submitter's info in the body too
-                message.Body += $"\n\n---\nSubmitted by: {model.Name} <{model.Email}>";
+                              $"Message:\n{model.Details}\n\n---\nSubmitted by: {model.Name} <{model.Email}>";
 
                 client.Send(message);
-
-                ViewBag.StatusMessage = "✓ Message sent successfully!";
+                return Json(new { success = true });
             }
             catch (Exception ex)
             {
-                ViewBag.StatusMessage = "Error: " + ex.Message;
+                _logger.LogError(ex, "Contact form error");
+                return Json(new { success = false, message = "Something went wrong. Please try again." });
             }
-
-            ViewData["HideNavbar"] = true;
-            return View();
         }
 
         public IActionResult Privacy()
