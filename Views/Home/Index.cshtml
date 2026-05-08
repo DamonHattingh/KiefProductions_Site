@@ -2481,24 +2481,19 @@
         .mobile-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
         .mobile-nav-overlay {
+            display: none;
             position: fixed;
-            inset: 0;
+            top: 0; left: 0; right: 0; bottom: 0;
             z-index: 99999;
             background: rgba(10,10,10,0.97);
-            backdrop-filter: blur(16px);
-            display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             gap: 8px;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.3s ease, visibility 0.3s ease;
         }
 
         .mobile-nav-overlay.open {
-            opacity: 1;
-            visibility: visible;
+            display: flex;
         }
 
         .mobile-nav-overlay a {
