@@ -2481,32 +2481,39 @@
         .mobile-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
         .mobile-nav-overlay {
-            display: none;
             position: fixed;
             inset: 0;
-            z-index: 10000;
+            z-index: 99999;
             background: rgba(10,10,10,0.97);
             backdrop-filter: blur(16px);
+            display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             gap: 8px;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
         }
 
-        .mobile-nav-overlay.open { display: flex; }
+        .mobile-nav-overlay.open {
+            opacity: 1;
+            visibility: visible;
+        }
 
         .mobile-nav-overlay a {
             font-family: 'Bebas Neue', 'Oswald', 'Impact', sans-serif;
             font-size: 3rem;
-            color: rgba(255,255,255,0.7);
-            text-decoration: none;
+            color: #ffffff !important;
+            text-decoration: none !important;
             letter-spacing: 3px;
             text-transform: uppercase;
             transition: color 0.2s ease;
             padding: 8px 0;
+            opacity: 0.7;
         }
 
-        .mobile-nav-overlay a:hover { color: #fff; }
+        .mobile-nav-overlay a:hover { opacity: 1; }
 
         .nav-logo-mobile {
             display: none;
@@ -2524,6 +2531,10 @@
                 gap: 16px;
                 width: 100%;
                 padding: 0 20px;
+            }
+
+            .et-hero-tabs {
+                height: 11vh;
             }
 
             .et-hero-tabs-container {
@@ -2800,7 +2811,7 @@
             <!-- Desktop: full logo. Mobile: short logo + hamburger side by side -->
             <img src="/images/Logo_White_Text.png" alt="Logo" class="nav-logo-desktop" style="width: 450px; max-width: 80vw; margin-bottom: 30px;" />
             <div class="nav-logo-mobile">
-                <img src="/images/TextWhite.png" alt="Kief Productions" style="height: 56px; width: auto;" />
+                <img src="/images/TextWhite.png" alt="Kief Productions" style="height: 70px; width: auto;" />
                 <button class="mobile-hamburger" id="mobileHamburger" aria-label="Toggle navigation">
                     <span></span><span></span><span></span>
                 </button>
@@ -3503,27 +3514,32 @@
             });
 
             // ── Mobile hamburger menu ─────────────────────────────────
-            const mobileNav = document.getElementById('mobileNavOverlay');
+            (function () {
+                var btn = document.getElementById('mobileHamburger');
+                var overlay = document.getElementById('mobileNavOverlay');
+                if (!btn || !overlay) return;
 
-            function closeMobileNav() {
-                mobileNav.classList.remove('open');
-                hamburgerBtn.classList.remove('open');
-                document.body.style.overflow = '';
-            }
+                function closeMenu() {
+                    overlay.classList.remove('open');
+                    btn.classList.remove('open');
+                    document.body.style.overflow = '';
+                }
 
-            hamburgerBtn.addEventListener('click', function () {
-                const isOpen = mobileNav.classList.toggle('open');
-                hamburgerBtn.classList.toggle('open', isOpen);
-                document.body.style.overflow = isOpen ? 'hidden' : '';
-            });
+                btn.addEventListener('click', function () {
+                    var opening = !overlay.classList.contains('open');
+                    overlay.classList.toggle('open', opening);
+                    btn.classList.toggle('open', opening);
+                    document.body.style.overflow = opening ? 'hidden' : '';
+                });
 
-            document.querySelectorAll('.mobile-nav-link').forEach(function (link) {
-                link.addEventListener('click', closeMobileNav);
-            });
+                overlay.querySelectorAll('a').forEach(function (a) {
+                    a.addEventListener('click', closeMenu);
+                });
 
-            document.addEventListener('keydown', function (e) {
-                if (e.key === 'Escape' && mobileNav.classList.contains('open')) closeMobileNav();
-            });
+                document.addEventListener('keydown', function (e) {
+                    if (e.key === 'Escape') closeMenu();
+                });
+            }());
 
             // ── Testimonial slider ───────────────────────────────────
             let testimonialIndex = 0;
