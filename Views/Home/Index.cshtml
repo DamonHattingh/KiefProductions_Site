@@ -1273,124 +1273,60 @@
             transform: translateY(-3px);
         }
 
-        /* SERVICES BENTO */
-        .services-bento {
+        /* SERVICES LIST */
+        .services-list {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 14px;
-            max-width: 1200px;
+            grid-template-columns: 1fr 1fr;
+            max-width: 860px;
             margin: 48px auto 0;
-        }
-
-        .svc-card {
-            background: rgba(255,255,255,0.02);
             border: 1px solid rgba(255,255,255,0.07);
-            border-radius: 16px;
-            padding: 36px 30px;
-            position: relative;
-            overflow: hidden;
-            transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
-        }
-
-        .svc-card::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(ellipse at 50% -10%, var(--svc-accent) 0%, transparent 65%);
-            opacity: 0;
-            transition: opacity 0.4s ease;
-            pointer-events: none;
-        }
-
-        .svc-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--svc-accent);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4), 0 0 24px color-mix(in srgb, var(--svc-accent) 20%, transparent);
-        }
-
-        .svc-card:hover::before { opacity: 1; }
-
-        .svc-icon-wrap {
-            width: 64px;
-            height: 64px;
             border-radius: 14px;
-            background: color-mix(in srgb, var(--svc-accent) 12%, transparent);
-            border: 1px solid color-mix(in srgb, var(--svc-accent) 30%, transparent);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.6rem;
-            color: var(--svc-accent);
-            margin-bottom: 20px;
-            transition: transform 0.3s ease, background 0.3s ease;
-        }
-
-        .svc-card:hover .svc-icon-wrap {
-            transform: scale(1.1);
-            background: color-mix(in srgb, var(--svc-accent) 20%, transparent);
-        }
-
-        .svc-title {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: #fff;
-            margin-bottom: 10px;
-        }
-
-        .svc-desc {
-            font-size: 0.85rem;
-            color: #888;
-            line-height: 1.7;
-            margin-bottom: 0;
-            transition: margin 0.3s ease;
-        }
-
-        .svc-features {
-            list-style: none;
-            margin: 0;
-            padding: 0;
-            max-height: 0;
             overflow: hidden;
-            transition: max-height 0.4s ease, margin 0.4s ease;
         }
 
-        .svc-card:hover .svc-features {
-            max-height: 200px;
-            margin-top: 16px;
-        }
-
-        .svc-features li {
-            font-size: 0.78rem;
-            color: #666;
-            padding: 4px 0;
+        .svc-item {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 18px;
+            padding: 22px 28px;
+            border-bottom: 1px solid rgba(255,255,255,0.07);
+            transition: background 0.2s ease;
         }
 
-        .svc-features li i {
-            color: var(--svc-accent);
-            font-size: 0.6rem;
+        .svc-item:nth-child(odd) {
+            border-right: 1px solid rgba(255,255,255,0.07);
         }
 
-        .svc-divider {
-            width: 32px;
-            height: 2px;
-            background: var(--svc-accent);
-            margin: 14px 0;
-            border-radius: 2px;
-            transition: width 0.3s ease;
+        .svc-item:nth-last-child(1),
+        .svc-item:nth-last-child(2) {
+            border-bottom: none;
         }
 
-        .svc-card:hover .svc-divider { width: 56px; }
-
-        @@media (max-width: 900px) {
-            .services-bento { grid-template-columns: repeat(2, 1fr); }
+        .svc-item:hover {
+            background: rgba(255,255,255,0.03);
         }
 
-        @@media (max-width: 560px) {
-            .services-bento { grid-template-columns: 1fr; }
+        .svc-item i {
+            font-size: 1.1rem;
+            color: #ff3e00;
+            width: 22px;
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        .svc-item span {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #e0e0e0;
+            letter-spacing: 0.3px;
+        }
+
+        @@media (max-width: 600px) {
+            .services-list { grid-template-columns: 1fr; }
+            .svc-item:nth-child(odd) { border-right: none; }
+            .svc-item:nth-last-child(2) { border-bottom: 1px solid rgba(255,255,255,0.07); }
+            .svc-item:last-child { border-bottom: none; }
         }
 
         .service-content {
@@ -2773,86 +2709,15 @@
             <span class="company-tag d-flex justify-content-center">Our Services</span>
             <h2 class="company-title" style="text-align: center;">You need it. We can do it.</h2>
 
-            <div class="services-bento">
-
-                <div class="svc-card fade-in" style="--svc-accent: #ff3e00;">
-                    <div class="svc-icon-wrap"><i class="fas fa-volume-up"></i></div>
-                    <div class="svc-divider"></div>
-                    <h3 class="svc-title">Professional Audio</h3>
-                    <p class="svc-desc">Crystal clear sound for any event — from intimate gatherings to large-scale productions.</p>
-                    <ul class="svc-features">
-                        <li><i class="fas fa-circle"></i> Live Sound Reinforcement</li>
-                        <li><i class="fas fa-circle"></i> Wireless Systems & Microphones</li>
-                        <li><i class="fas fa-circle"></i> Recording & Mixing</li>
-                        <li><i class="fas fa-circle"></i> Sound System Installation</li>
-                    </ul>
-                </div>
-
-                <div class="svc-card fade-in" style="--svc-accent: #00a8ff;">
-                    <div class="svc-icon-wrap"><i class="fas fa-broadcast-tower"></i></div>
-                    <div class="svc-divider"></div>
-                    <h3 class="svc-title">Live Streaming</h3>
-                    <p class="svc-desc">Professional multi-camera streaming for hybrid and virtual events on all major platforms.</p>
-                    <ul class="svc-features">
-                        <li><i class="fas fa-circle"></i> Multi-Camera Setup</li>
-                        <li><i class="fas fa-circle"></i> Zoom, YouTube & Custom Platforms</li>
-                        <li><i class="fas fa-circle"></i> Real-time Graphics & Lower Thirds</li>
-                        <li><i class="fas fa-circle"></i> Technical Director On-Site</li>
-                    </ul>
-                </div>
-
-                <div class="svc-card fade-in" style="--svc-accent: #4CAF50;">
-                    <div class="svc-icon-wrap"><i class="fas fa-camera"></i></div>
-                    <div class="svc-divider"></div>
-                    <h3 class="svc-title">Photography & Videography</h3>
-                    <p class="svc-desc">Cinematic video and professional photography that captures your story perfectly.</p>
-                    <ul class="svc-features">
-                        <li><i class="fas fa-circle"></i> 4K Cinematic Video Production</li>
-                        <li><i class="fas fa-circle"></i> Professional Event Photography</li>
-                        <li><i class="fas fa-circle"></i> Aerial Drone Footage</li>
-                        <li><i class="fas fa-circle"></i> Post-Production Editing</li>
-                    </ul>
-                </div>
-
-                <div class="svc-card fade-in" style="--svc-accent: #ffeb3b;">
-                    <div class="svc-icon-wrap"><i class="fas fa-lightbulb"></i></div>
-                    <div class="svc-divider"></div>
-                    <h3 class="svc-title">Lighting FX & Design</h3>
-                    <p class="svc-desc">Transform any space with dynamic lighting effects and atmospheric design that sets the mood.</p>
-                    <ul class="svc-features">
-                        <li><i class="fas fa-circle"></i> Intelligent Moving Lights & Lasers</li>
-                        <li><i class="fas fa-circle"></i> LED Walls & Video Mapping</li>
-                        <li><i class="fas fa-circle"></i> Fog, Haze & Atmospheric Effects</li>
-                        <li><i class="fas fa-circle"></i> DMX Programming & Control</li>
-                    </ul>
-                </div>
-
-                <div class="svc-card fade-in" style="--svc-accent: #9c27b0;">
-                    <div class="svc-icon-wrap"><i class="fas fa-magic"></i></div>
-                    <div class="svc-divider"></div>
-                    <h3 class="svc-title">Visual Effects & Projection</h3>
-                    <p class="svc-desc">Immersive experiences with 3D projection mapping, LED screens, and interactive digital content.</p>
-                    <ul class="svc-features">
-                        <li><i class="fas fa-circle"></i> 3D Projection Mapping</li>
-                        <li><i class="fas fa-circle"></i> Real-time Visual Effects</li>
-                        <li><i class="fas fa-circle"></i> LED Screen Content Creation</li>
-                        <li><i class="fas fa-circle"></i> Interactive Installations</li>
-                    </ul>
-                </div>
-
-                <div class="svc-card fade-in" style="--svc-accent: #00bcd4;">
-                    <div class="svc-icon-wrap"><i class="fas fa-vr-cardboard"></i></div>
-                    <div class="svc-divider"></div>
-                    <h3 class="svc-title">VR & AR Experiences</h3>
-                    <p class="svc-desc">Cutting-edge virtual and augmented reality for immersive brand activations and event experiences.</p>
-                    <ul class="svc-features">
-                        <li><i class="fas fa-circle"></i> Virtual Reality Installations</li>
-                        <li><i class="fas fa-circle"></i> Augmented Reality Experiences</li>
-                        <li><i class="fas fa-circle"></i> 360° Video Production</li>
-                        <li><i class="fas fa-circle"></i> Mixed Reality Events</li>
-                    </ul>
-                </div>
-
+            <div class="services-list">
+                <div class="svc-item"><i class="fas fa-volume-up"></i><span>Professional Audio</span></div>
+                <div class="svc-item"><i class="fas fa-lightbulb"></i><span>Lighting & FX</span></div>
+                <div class="svc-item"><i class="fas fa-broadcast-tower"></i><span>Live Streaming</span></div>
+                <div class="svc-item"><i class="fas fa-tv"></i><span>LED Screens & Projection</span></div>
+                <div class="svc-item"><i class="fas fa-archway"></i><span>Stage & Rigging</span></div>
+                <div class="svc-item"><i class="fas fa-camera"></i><span>Photography & Videography</span></div>
+                <div class="svc-item"><i class="fas fa-fire"></i><span>Cold Sparks & Special Effects</span></div>
+                <div class="svc-item"><i class="fas fa-record-vinyl"></i><span>Webcasting & Recording</span></div>
             </div>
         </section>
 
