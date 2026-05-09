@@ -55,6 +55,8 @@
         }
 
         :root {
+            --gradient: linear-gradient(135deg, #8b5cf6 0%, #3b82f6 50%, #06b6d4 100%);
+            --gradient-text: linear-gradient(135deg, #a78bfa 0%, #60a5fa 50%, #22d3ee 100%);
             --primary-color: #ffffff;
             --secondary-color: #00a8ff;
             --accent-color: #9c27b0;
@@ -267,7 +269,7 @@
             bottom: 0;
             width: 0;
             height: 4px;
-            background: white;
+            background: var(--gradient);
             transition: left 0.3s ease, width 0.3s ease;
         }
 
@@ -398,7 +400,7 @@
                 .book-link .arrow::before, .book-link .arrow::after {
                     position: absolute;
                     content: "";
-                    background-color: #f1e728;
+                    background: var(--gradient);
                     transition: all ease-in-out 0.35s;
                     transform-origin: 0 0;
                     border-radius: 30px;
@@ -427,7 +429,7 @@
             }
 
             .book-link .arrow span {
-                background-color: #f1e728;
+                background: var(--gradient);
                 height: 2px;
                 width: 100%;
                 display: inline-block;
@@ -441,7 +443,7 @@
             }
 
                 .book-link .arrow span::before {
-                    background-color: #f1e728;
+                    background: var(--gradient);
                     content: "";
                     height: 100%;
                     width: 15px;
@@ -1311,11 +1313,14 @@
 
         .svc-item i {
             font-size: 1.1rem;
-            color: #ffffff;
             width: 22px;
             text-align: center;
             flex-shrink: 0;
             margin-top: 3px;
+            background: var(--gradient-text);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .svc-item-body {
@@ -1479,9 +1484,12 @@
             font-size: 0.9rem;
             font-weight: 600;
             letter-spacing: 2px;
-            color: var(--primary-color);
             margin-bottom: 20px;
             text-transform: uppercase;
+            background: var(--gradient-text);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .company-title {
@@ -2272,7 +2280,7 @@
             height: 50px;
             border: 3px solid rgba(255,255,255,0.1);
             border-radius: 50%;
-            border-top-color: var(--primary-color);
+            border-top-color: #8b5cf6;
             animation: spin 1s ease-in-out infinite;
         }
 
@@ -2681,20 +2689,27 @@
             width: 56px;
             height: 56px;
             border-radius: 50%;
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.15);
+            background: linear-gradient(#111,#111) padding-box, var(--gradient) border-box;
+            border: 1px solid transparent;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 1.3rem;
-            color: white;
             margin-bottom: 14px;
             transition: all 0.3s ease;
             flex-shrink: 0;
+            background-clip: padding-box, border-box;
+            -webkit-background-clip: padding-box, border-box;
+        }
+
+        .process-icon-wrap i {
+            background: var(--gradient-text);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .process-step:hover .process-icon-wrap {
-            background: rgba(255,255,255,0.1);
             transform: scale(1.1);
         }
 
@@ -3025,7 +3040,7 @@
                             "Weddings", "Birthday Parties", "Matric Farewells", "Engagement Parties",
                             "Concerts", "Festivals", "Outdoor Events"
                         }) {
-                            <span style="display: inline-flex; align-items: center; background: #1a1a1a; border: 1px solid #ffffff; border-radius: 50px; padding: 12px 24px; font-size: 15px; color: #ffffff; white-space: nowrap; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; flex-shrink: 0;">@item</span>
+                            <span style="display: inline-flex; align-items: center; background: linear-gradient(#1a1a1a,#1a1a1a) padding-box, linear-gradient(135deg,#8b5cf6,#3b82f6,#06b6d4) border-box; border: 1px solid transparent; border-radius: 50px; padding: 12px 24px; font-size: 15px; color: #ffffff; white-space: nowrap; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; flex-shrink: 0;">@item</span>
                         }
                     </div>
                 </div>
@@ -3390,7 +3405,7 @@
 
         <!-- STICKY CTA BUTTON -->
         <div id="sticky-cta" style="position: fixed; bottom: 30px; right: 30px; z-index: 9000; opacity: 0; transform: translateY(20px); transition: opacity 0.4s ease, transform 0.4s ease; pointer-events: none;">
-            <a href="#contact" id="sticky-cta-link" style="display: inline-flex; align-items: center; gap: 10px; padding: 14px 28px; border-radius: 50px; box-shadow: 0 8px 30px rgba(0,0,0,0.5); font-size: 1rem; background: white; color: black; text-decoration: none; font-weight: 600;">
+            <a href="#contact" id="sticky-cta-link" style="display: inline-flex; align-items: center; gap: 10px; padding: 14px 28px; border-radius: 50px; box-shadow: 0 8px 30px rgba(139,92,246,0.4); font-size: 1rem; background: linear-gradient(135deg, #8b5cf6 0%, #3b82f6 50%, #06b6d4 100%); color: white; text-decoration: none; font-weight: 600;">
                 <i class="fas fa-paper-plane"></i> Get a Quote
             </a>
         </div>
