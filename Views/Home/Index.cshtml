@@ -2044,6 +2044,204 @@
             color: white;
         }
 
+        /* PRICING */
+        .pricing-section {
+            padding: 100px 40px;
+            background: var(--dark-bg);
+            text-align: center;
+        }
+
+        .pricing-statement {
+            max-width: 780px;
+            margin: 0 auto 60px;
+        }
+
+        .pricing-statement p {
+            font-size: 1.15rem;
+            color: var(--gray-text);
+            line-height: 1.8;
+            margin: 0;
+        }
+
+        .pricing-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            max-width: 1000px;
+            margin: 0 auto 60px;
+        }
+
+        .pricing-card {
+            background: #141414;
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 36px 28px;
+            text-align: left;
+            transition: border-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .pricing-card:hover {
+            border-color: #8b5cf6;
+            transform: translateY(-4px);
+        }
+
+        .pricing-card-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #8b5cf6, #06b6d4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: #fff;
+            margin-bottom: 20px;
+        }
+
+        .pricing-card h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+
+        .pricing-card p {
+            font-size: 0.9rem;
+            color: var(--gray-text);
+            line-height: 1.7;
+            margin: 0;
+        }
+
+        .pricing-cta-box {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #141414;
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 48px 40px;
+        }
+
+        .pricing-cta-box p {
+            font-size: 1rem;
+            color: var(--gray-text);
+            margin-bottom: 28px;
+            line-height: 1.7;
+        }
+
+        .pricing-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 16px 40px;
+            border-radius: 50px;
+            background: var(--gradient);
+            color: #fff;
+            font-weight: 700;
+            font-size: 1rem;
+            text-decoration: none;
+            letter-spacing: 0.5px;
+            transition: opacity 0.2s ease, transform 0.2s ease;
+        }
+
+        .pricing-btn:hover {
+            opacity: 0.85;
+            transform: translateY(-2px);
+            color: #fff;
+        }
+
+        /* FAQ */
+        .faq-section {
+            padding: 100px 40px;
+            background: #111111;
+        }
+
+        .faq-inner {
+            max-width: 780px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid var(--border);
+        }
+
+        .faq-question {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 24px 0;
+            cursor: pointer;
+            gap: 20px;
+        }
+
+        .faq-question span {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: #fff;
+            text-align: left;
+        }
+
+        .faq-icon {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #8b5cf6, #06b6d4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 0.8rem;
+            color: #fff;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.open .faq-icon {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.3s ease;
+        }
+
+        .faq-item.open .faq-answer {
+            max-height: 300px;
+        }
+
+        .faq-answer p {
+            font-size: 0.95rem;
+            color: var(--gray-text);
+            line-height: 1.8;
+            padding-bottom: 24px;
+            margin: 0;
+        }
+
+        /* WHATSAPP BUTTON */
+        .whatsapp-btn {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            z-index: 9000;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: #25d366;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: #fff;
+            box-shadow: 0 6px 24px rgba(37,211,102,0.4);
+            text-decoration: none;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .whatsapp-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 32px rgba(37,211,102,0.6);
+            color: #fff;
+        }
+
         /* TESTIMONIALS */
         .testimonials-section {
             padding: 100px 40px;
@@ -2567,8 +2765,25 @@
                 grid-template-columns: 1fr;
             }
 
-            .services-section, .testimonials-section, .contact-section {
+            .services-section, .testimonials-section, .contact-section, .pricing-section, .faq-section {
                 padding: 60px 20px;
+            }
+
+            .pricing-cards {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            .pricing-cta-box {
+                padding: 32px 24px;
+            }
+
+            .whatsapp-btn {
+                bottom: 20px;
+                left: 20px;
+                width: 50px;
+                height: 50px;
+                font-size: 1.3rem;
             }
 
             .company-section {
@@ -2853,6 +3068,8 @@
                 <a class="et-hero-tab" href="#services">Services</a>
                 <a class="et-hero-tab" href="#carousel">Portfolio</a>
                 <a class="et-hero-tab" href="#company">Who We Are</a>
+                <a class="et-hero-tab" href="#pricing">Pricing</a>
+                <a class="et-hero-tab" href="#faq">FAQ</a>
                 <a class="et-hero-tab" href="#testimonials">Testimonials</a>
                 <a class="et-hero-tab" href="#contact">Contact</a>
                 <span class="et-hero-tab-slider"></span>
@@ -3263,6 +3480,109 @@
             </div>
         </section>
 
+        <!-- PRICING SECTION -->
+        <section class="pricing-section" id="pricing">
+            <span class="company-tag d-flex justify-content-center">Our Approach</span>
+            <h2 class="company-title" style="text-align:center;">No two events are the same.</h2>
+
+            <div class="pricing-statement">
+                <p>We don't do off-the-shelf packages — because we've never seen two identical events. Whether it's an intimate private dinner, a high-energy festival, or a corporate product launch, each event deserves a production plan that's built around it. We sit down with you, understand your vision, your space, and your budget — and we design something that fits.</p>
+            </div>
+
+            <div class="pricing-cards">
+                <div class="pricing-card fade-in">
+                    <div class="pricing-card-icon"><i class="fas fa-comments"></i></div>
+                    <h3>We Listen First</h3>
+                    <p>Every quote starts with a conversation. We want to understand your event inside out before we put together a single number.</p>
+                </div>
+                <div class="pricing-card fade-in">
+                    <div class="pricing-card-icon"><i class="fas fa-drafting-compass"></i></div>
+                    <h3>Built Around Your Event</h3>
+                    <p>No bloated bundles, no paying for kit you don't need. Your production plan is designed specifically for your event — nothing more, nothing less.</p>
+                </div>
+                <div class="pricing-card fade-in">
+                    <div class="pricing-card-icon"><i class="fas fa-shield-alt"></i></div>
+                    <h3>Transparent Pricing</h3>
+                    <p>We break down every line item so you know exactly what you're getting. No hidden fees, no surprises on the day.</p>
+                </div>
+            </div>
+
+            <div class="pricing-cta-box fade-in">
+                <h3 style="font-size:1.4rem;font-weight:700;color:#fff;margin-bottom:12px;">Ready to get your custom quote?</h3>
+                <p>Tell us about your event and we'll put together a detailed, no-obligation proposal — usually within 24 hours.</p>
+                <a href="#contact" class="pricing-btn"><i class="fas fa-paper-plane"></i> Request a Quote</a>
+            </div>
+        </section>
+
+        <!-- FAQ SECTION -->
+        <section class="faq-section" id="faq">
+            <span class="company-tag d-flex justify-content-center">FAQ</span>
+            <h2 class="company-title" style="text-align:center;">Questions we get all the time.</h2>
+            <div class="faq-inner">
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>How far in advance should I book?</span>
+                        <div class="faq-icon"><i class="fas fa-plus"></i></div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>As early as possible — especially for peak season (October through December). We recommend at least 4–6 weeks for smaller events and 3+ months for large productions. That said, we understand life happens, so reach out even for last-minute requests and we'll do our best to make it work.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Do you travel outside of Pretoria?</span>
+                        <div class="faq-icon"><i class="fas fa-plus"></i></div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Absolutely. We're based in Pretoria but we travel across Gauteng and beyond for the right event. Travel and accommodation costs are simply factored into your quote transparently — no surprises.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>How does the quoting process work?</span>
+                        <div class="faq-icon"><i class="fas fa-plus"></i></div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Fill in the contact form or send us a WhatsApp — we'll get back to you within 24 hours to set up a quick call or chat. From there we put together a detailed, itemised proposal based on your specific event. No generic numbers, no pressure.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>What happens on the day of the event?</span>
+                        <div class="faq-icon"><i class="fas fa-plus"></i></div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We arrive early to set up, run a full technical check, and make sure everything is dialled in before your first guest walks through the door. One of our team is on-site throughout the entire event to handle anything that comes up so you can focus on enjoying the day.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>What do you need from me to get started?</span>
+                        <div class="faq-icon"><i class="fas fa-plus"></i></div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Just the basics — your event date, venue, rough guest count, and what kind of experience you're going for. We take it from there. The more detail you can share the better, but don't stress if you're still figuring things out — we're used to building plans as things evolve.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Can you handle a small private event, not just big productions?</span>
+                        <div class="faq-icon"><i class="fas fa-plus"></i></div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>100%. We genuinely believe no event is too small. A well-run 50-person birthday with great sound and lighting creates just as much of a memory as a 5,000-person concert. If it matters to you, it matters to us.</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
         <!-- TESTIMONIALS SECTION -->
         <section class="testimonials-section" id="testimonials">
             <h2 class="section-title">Client Testimonials</h2>
@@ -3407,6 +3727,11 @@
             </div>
         </footer>
 
+        <!-- WHATSAPP BUTTON -->
+        <a href="https://wa.me/27XXXXXXXXX" target="_blank" rel="noopener noreferrer" class="whatsapp-btn" aria-label="Chat on WhatsApp">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+
         <!-- STICKY CTA BUTTON -->
         <div id="sticky-cta" style="position: fixed; bottom: 30px; right: 30px; z-index: 9000; opacity: 0; transform: translateY(20px); transition: opacity 0.4s ease, transform 0.4s ease; pointer-events: none;">
             <a href="#contact" id="sticky-cta-link" style="display: inline-flex; align-items: center; gap: 10px; padding: 14px 28px; border-radius: 50px; box-shadow: 0 8px 30px rgba(139,92,246,0.4); font-size: 1rem; background: linear-gradient(135deg, #8b5cf6 0%, #3b82f6 50%, #06b6d4 100%); color: white; text-decoration: none; font-weight: 600;">
@@ -3450,6 +3775,8 @@
         <a href="#services"     onclick="closeMobileNav()">Services</a>
         <a href="#carousel"     onclick="closeMobileNav()">Portfolio</a>
         <a href="#company"      onclick="closeMobileNav()">Who We Are</a>
+        <a href="#pricing"      onclick="closeMobileNav()">Pricing</a>
+        <a href="#faq"          onclick="closeMobileNav()">FAQ</a>
         <a href="#testimonials" onclick="closeMobileNav()">Testimonials</a>
         <a href="#contact"      onclick="closeMobileNav()">Contact</a>
     </nav>
@@ -3663,6 +3990,18 @@
 
             window.addEventListener('scroll', updateActiveNav);
             updateActiveNav();
+
+            // ── FAQ Accordion ─────────────────────────────────────────
+            document.querySelectorAll('.faq-question').forEach(function (question) {
+                question.addEventListener('click', function () {
+                    var item = this.closest('.faq-item');
+                    var isOpen = item.classList.contains('open');
+                    document.querySelectorAll('.faq-item.open').forEach(function (openItem) {
+                        openItem.classList.remove('open');
+                    });
+                    if (!isOpen) item.classList.add('open');
+                });
+            });
 
             // ── AJAX Contact Form ────────────────────────────────────
             const contactForm = document.getElementById('contactForm');
