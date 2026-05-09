@@ -80,8 +80,8 @@ namespace KiefProductions_Site.Controllers
 
           <!-- HEADER -->
           <tr>
-            <td style=""background-color:#111111;border-top:4px solid #ff3e00;border-radius:12px 12px 0 0;padding:36px 40px;text-align:center;"">
-              <p style=""margin:0 0 6px;font-size:11px;letter-spacing:4px;text-transform:uppercase;color:#ff3e00;font-weight:600;"">Event Production</p>
+            <td style=""background-color:#111111;border-top:4px solid #ffffff;border-radius:12px 12px 0 0;padding:36px 40px;text-align:center;"">
+              <p style=""margin:0 0 6px;font-size:11px;letter-spacing:4px;text-transform:uppercase;color:#ffffff;font-weight:600;"">Event Production</p>
               <h1 style=""margin:0;font-size:28px;font-weight:700;color:#ffffff;letter-spacing:2px;text-transform:uppercase;"">Kief Productions</h1>
               <p style=""margin:12px 0 0;font-size:13px;color:#888888;"">New enquiry received via website</p>
             </td>
@@ -99,31 +99,31 @@ namespace KiefProductions_Site.Controllers
               <table width=""100%"" cellpadding=""0"" cellspacing=""0"" style=""background-color:#242424;border-radius:8px;border:1px solid #2e2e2e;margin-bottom:24px;"">
                 <tr>
                   <td style=""padding:20px 24px;border-bottom:1px solid #2e2e2e;"">
-                    <p style=""margin:0 0 4px;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#ff3e00;"">Name</p>
+                    <p style=""margin:0 0 4px;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#ffffff;"">Name</p>
                     <p style=""margin:0;font-size:16px;color:#ffffff;font-weight:600;"">{System.Web.HttpUtility.HtmlEncode(model.Name)}</p>
                   </td>
                 </tr>
                 <tr>
                   <td style=""padding:20px 24px;border-bottom:1px solid #2e2e2e;"">
-                    <p style=""margin:0 0 4px;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#ff3e00;"">Email</p>
+                    <p style=""margin:0 0 4px;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#ffffff;"">Email</p>
                     <p style=""margin:0;font-size:16px;color:#ffffff;""><a href=""mailto:{System.Web.HttpUtility.HtmlEncode(model.Email)}"" style=""color:#00a8ff;text-decoration:none;"">{System.Web.HttpUtility.HtmlEncode(model.Email)}</a></p>
                   </td>
                 </tr>
                 <tr>
                   <td style=""padding:20px 24px;border-bottom:1px solid #2e2e2e;"">
-                    <p style=""margin:0 0 4px;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#ff3e00;"">Phone</p>
+                    <p style=""margin:0 0 4px;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#ffffff;"">Phone</p>
                     <p style=""margin:0;font-size:16px;color:#ffffff;"">{System.Web.HttpUtility.HtmlEncode(phone)}</p>
                   </td>
                 </tr>
                 <tr>
                   <td style=""padding:20px 24px;border-bottom:1px solid #2e2e2e;"">
-                    <p style=""margin:0 0 4px;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#ff3e00;"">Event Date</p>
+                    <p style=""margin:0 0 4px;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#ffffff;"">Event Date</p>
                     <p style=""margin:0;font-size:16px;color:#ffffff;"">{eventDate}</p>
                   </td>
                 </tr>
                 <tr>
                   <td style=""padding:20px 24px;"">
-                    <p style=""margin:0 0 8px;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#ff3e00;"">Message</p>
+                    <p style=""margin:0 0 8px;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#ffffff;"">Message</p>
                     <p style=""margin:0;font-size:15px;color:#cccccc;line-height:1.7;white-space:pre-wrap;"">{System.Web.HttpUtility.HtmlEncode(model.Details)}</p>
                   </td>
                 </tr>
@@ -133,7 +133,7 @@ namespace KiefProductions_Site.Controllers
               <table width=""100%"" cellpadding=""0"" cellspacing=""0"">
                 <tr>
                   <td align=""center"">
-                    <a href=""mailto:{System.Web.HttpUtility.HtmlEncode(model.Email)}"" style=""display:inline-block;background-color:#ff3e00;color:#ffffff;text-decoration:none;font-size:15px;font-weight:600;padding:14px 40px;border-radius:50px;letter-spacing:1px;"">
+                    <a href=""mailto:{System.Web.HttpUtility.HtmlEncode(model.Email)}"" style=""display:inline-block;background-color:#ffffff;color:#ffffff;text-decoration:none;font-size:15px;font-weight:600;padding:14px 40px;border-radius:50px;letter-spacing:1px;"">
                       Reply to {System.Web.HttpUtility.HtmlEncode(model.Name)}
                     </a>
                   </td>
