@@ -486,7 +486,9 @@
         .service-image-overlay {
             position: absolute;
             inset: 0;
-            background: linear-gradient(to right, #121212 0%, transparent 30%), linear-gradient(to top, #121212 0%, transparent 40%);
+            background:
+                linear-gradient(to right, #121212 0%, rgba(18,18,18,0.85) 20%, rgba(18,18,18,0.4) 40%, transparent 60%),
+                linear-gradient(to top, #121212 0%, transparent 40%);
             z-index: 2;
             pointer-events: none;
         }
